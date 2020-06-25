@@ -41,16 +41,17 @@ const LandingPageContent = styled.div`
     }
     //md
     @media all and (max-width:1199){
-        max-width:300px;
+        
     }
     //sm
     @media all and (max-width:991px){
-        max-width:250pxpx;
+        
     }
 
     //xs
     @media all and (max-width:767px){
         width:100%;
+        max-width:250pxpx;
     }
 
 `;
@@ -89,13 +90,20 @@ const LandingHeading = styled.h2`
     font-size: 5rem;
     color: white;
     line-height: 5rem;
+    @media all and (max-width:767px){
+        font-size: 3rem;
+        line-height: 3rem;
+    }
 `;
 
 const FloatingText = styled.div`
     position relative;
     right:10%;
     top:30%;
-
+    @media all and (max-width:767px){
+        right:0%;
+    }
+    
 `;
 
 const SpecialOffer = styled.div`
@@ -123,7 +131,6 @@ const MainContent = () => {
         <Fragment>
             <LandingPage>
                 <LandingPageContent>
-                    
                     <FloatingText>
                         <LandingHeading>Find</LandingHeading>
                         <LandingHeading>Yourself</LandingHeading>
@@ -140,7 +147,10 @@ const MainContent = () => {
                         <div className="col-12 text-center p-5">
                             <img src={palmTree} />
                             <p>The Nagrand Resort & Spa is an ode to discovery, a love letter to life in the heart of Cebu.</p>
-                            <Button location="aboutus" size="large" type="button">READ MORE</Button>
+                            <Link to="/about-us">
+                                <Button location="aboutus" size="large" type="button">READ MORE</Button>
+                            </Link>
+                            
                         </div>
                     </div>
                     <div className="row">
@@ -157,8 +167,9 @@ const MainContent = () => {
                                 <li>Aqua Suite</li>
                                 <li>Tiera Suite</li>
                             </ul>
-
-                            <Button location="aboutus" size="large" type="button"> VIEW ALL SUITES</Button>
+                            <Link to="/catalog">
+                                <Button location="aboutus" size="large" type="button"> VIEW ALL SUITES</Button>
+                            </Link>
                         </div>
                     </div>
                 </AboutUsContent>
