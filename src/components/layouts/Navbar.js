@@ -95,7 +95,7 @@ const TopNav = ({user, token, logout}) => {
     
     return(
 
-            <nav style={{"background-color":"#4D5C58"}}class="navbar navbar-expand-lg navbar-dark">
+            <nav style={{"background-color":"#4D5C58"}}class="navbar navbar-expand-lg navbar-dark fixed-top">
                 <Link class="navbar-brand" to="/"><BrandImg></BrandImg></Link>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

@@ -31,13 +31,13 @@ const LandingPageContent = styled.div`
     background-position: center;
     width:60%;
     margin: 0 auto;
-    max-width: 1920px;
+    
     height:auto;
     font-family: ${props => props.theme.zcoolXiaoWei};
 
     //lg
     @media all and (min-width:1200px){
-        max-width:350px;
+        max-width: 1920px;
     }
     //md
     @media all and (max-width:1199){
@@ -74,11 +74,13 @@ const AboutUsContent = styled.div`
     background-position: center;
     width:75%;
     margin: 0 auto;
-    max-width: 1920px;
+    
     height:auto;
     display:block;
     justify-content: center;
     color: ${props=>props.theme.pine};
+    @media all and (min-width:1200px)
+        max-width: 1920px;
     //xs
     @media all and (max-width:767px){
         width:100%;
@@ -144,7 +146,7 @@ const MainContent = () => {
             <AboutUs>
                 <AboutUsContent>
                     <div className="row">
-                        <div className="col-12 text-center p-5">
+                        <div className="col-12 text-center ">
                             <img src={palmTree} />
                             <p>The Nagrand Resort & Spa is an ode to discovery, a love letter to life in the heart of Cebu.</p>
                             <Link to="/about-us">
@@ -154,10 +156,10 @@ const MainContent = () => {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-lg-6 col-12 p-5">
+                        <div className="col-lg-6 col-12 ">
                             <img src={`${arenaSuite}`} className="img-fluid"/>
                         </div>
-                        <div className="col-lg-6 col-12 p-5">
+                        <div className="col-lg-6 col-12 ">
                             <h1>Rooms</h1>
                             <h1>Stay with Us</h1>
                             <h5>A sanctuary set against Mactan's historic downtown</h5>

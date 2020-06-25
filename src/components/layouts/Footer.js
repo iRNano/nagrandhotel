@@ -10,14 +10,24 @@ const FooterStyle = styled.div`
 `;
 
 const FooterContent = styled.div`
-    width:62%;
+    width:70%;
     margin: 0 auto;
     padding-top: 5%;
     color: ${props => props.theme.cream};
     //xs
+
+    .align{
+        text-align:right;
+    }
     @media all and (max-width:767px){
         width:100%;
+        font-size:.7rem;
+        .align {
+            text-align:center;
+        }
     }
+
+    
 `;
 
 
@@ -34,21 +44,21 @@ const Footer = () => {
         <FooterStyle>
             <FooterContent>
                 <div className="row w-100">
-                    <div className="col-lg-3 col-6">
+                    <div className="col-lg-3 col-12">
                         <BrandImg></BrandImg>
                     </div>
-                    <div className="col-lg-3 col-6">
+                    <div className="col-lg-3 col-4">
                         <p>The Nagrand Resort & Spa</p>
                         <p>Buyong, Maribago Mactan Island,</p> 
                         <p>Lapu-Lapu City, 6015, Philippines</p>
                         
                     </div>
-                    <div className="col-4 text-center">
+                    <div className="col-lg-4 col-4 text-center">
                         <p>About Us</p>
                         <p>Contact Us</p>
                         <p>Services</p>
                     </div>
-                    <div className="col-2 text-center">
+                    <div className="col-lg-2 col-4 text-center">
                         <p>Reservations</p>
                         <p>T. +6332 402 1435</p>
                         <p>M. +6332 413 7876</p>
@@ -56,10 +66,10 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="row w-100 py-5">
-                    <div className="col-6">
+                    <div className="col-lg-6 col-12">
                         <small>Copyright 2020 All rights reserved | Adrian Valdepenas</small>
                     </div>
-                    <div className="col-6 text-right">
+                    <div className="col-lg-6 col-12 align">
                         <small>www.avaldepenas.com</small>
                     </div>
                 </div>
