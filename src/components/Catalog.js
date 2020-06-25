@@ -10,7 +10,12 @@ const RoomWrapper = styled.div`
     background-color: ${props=>props.theme.cream};
     padding: 8em;  
     min-height: 100vh;
-    font-family: ${props=>props.theme.zcoolXiaoWei}
+    font-family: ${props=>props.theme.zcoolXiaoWei};
+
+    //xs
+    @media all and (max-width:767px){
+        padding: 0em;
+    }
 `;
 
 const RoomContent = styled.div`
@@ -33,7 +38,7 @@ const Catalog = ({user, token}) => {
         rooms.map(room=> 
             (
                 <Fragment key={room._id}>
-                    <div className="col-6 py-5">
+                    <div className="col-lg-6 col-12 py-5">
                         <div className="card w-100">
                             {
                                 room.images.length > 0 ?

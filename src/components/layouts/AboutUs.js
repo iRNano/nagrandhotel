@@ -7,6 +7,10 @@ const AboutUsWrapper = styled.div`
     flex-flow: row nowrap;
     min-height: 100vh;
     background-color: ${props => props.theme.cream};
+    //xs
+    @media all and (max-width:767px){
+        padding: 0em;
+    }
 `;
 
 const AboutUsContent = styled.div`

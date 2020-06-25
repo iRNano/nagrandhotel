@@ -17,13 +17,12 @@ const BrandImg = styled.img.attrs(
 
 
 const StyledNavbar = styled.nav`
-    color: black;
-
-`;
+    // background-color:${props=>props.theme.pine}
+`
 const TopNav = ({user, token, logout}) => {
     const [collapsed, setCollapsed] = useState(true)
     let guestLinks, authLinks;
-    
+    //links
     if(!user && !token){
         guestLinks=(
             <Fragment>
@@ -95,8 +94,36 @@ const TopNav = ({user, token, logout}) => {
         
     
     return(
-        <StyledNavbar>
-            <Navbar style={{backgroundColor:"#4D5C58"}}expand="md" fixed="top" className="px-5 navbar-dark">
+
+            <nav style={{"background-color":"#4D5C58"}}class="navbar navbar-expand-lg navbar-dark">
+                <Link class="navbar-brand" to="/"><BrandImg></BrandImg></Link>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    {/* <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Link</a>
+                    </li>
+                
+                    <li class="nav-item">
+                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                    </ul> */}
+                    <ul className="navbar-nav ml-auto">
+                        {guestLinks}  
+                        {authLinks}
+                    </ul>
+                </div>
+            </nav>
+    )
+}
+
+ {/* <Navbar style={{backgroundColor:"#4D5C58"}}expand="md" fixed="top" className="px-5 navbar-dark">
                 <Link to="/" className="navbar-brand">
                     <BrandImg></BrandImg>
                 </Link>
@@ -113,9 +140,5 @@ const TopNav = ({user, token, logout}) => {
                         
                     
                 </Collapse>
-            </Navbar>
-        </StyledNavbar>
-    )
-}
-
+            </Navbar> */}
 export default TopNav;

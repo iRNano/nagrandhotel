@@ -13,7 +13,11 @@ const FooterContent = styled.div`
     width:62%;
     margin: 0 auto;
     padding-top: 5%;
-    color: ${props => props.theme.cream}
+    color: ${props => props.theme.cream};
+    //xs
+    @media all and (max-width:767px){
+        width:100%;
+    }
 `;
 
 
@@ -30,10 +34,10 @@ const Footer = () => {
         <FooterStyle>
             <FooterContent>
                 <div className="row w-100">
-                    <div className="col-3">
+                    <div className="col-lg-3 col-6">
                         <BrandImg></BrandImg>
                     </div>
-                    <div className="col-3">
+                    <div className="col-lg-3 col-6">
                         <p>The Nagrand Resort & Spa</p>
                         <p>Buyong, Maribago Mactan Island,</p> 
                         <p>Lapu-Lapu City, 6015, Philippines</p>

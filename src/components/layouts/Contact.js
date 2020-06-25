@@ -8,6 +8,10 @@ const ContactWrapper = styled.div`
     flex-flow: row nowrap;
     min-height: 100vh;
     background-color: ${props => props.theme.cream};
+    //xs
+    @media all and (max-width:767px){
+        padding: 0em;
+    }
 `;
 
 const ContactContent = styled.div`
@@ -30,7 +34,7 @@ const Contact = () => {
         <ContactWrapper>
             <ContactContent>
                 <div className="row">
-                    <div className="col-6">
+                    <div className="col-lg-6 col-12">
                         <h1>Get in touch</h1>
                         <p>We’re always happy to help, but first you may find what you need here in the frequently asked questions.</p>
                         <h1>The Nagrand Resort & Spa</h1>
@@ -42,7 +46,7 @@ const Contact = () => {
                         <p>F. +6332 441 5421</p>
                         <p>E: reservations@thenagrand.com</p>
                     </div>
-                    <div className="col-6">
+                    <div className="col-lg-6 col-12">
                         <img src={contact} className="img-fluid"></img>
                     </div>
                 </div>

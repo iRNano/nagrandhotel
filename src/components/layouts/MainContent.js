@@ -17,6 +17,10 @@ const LandingPage = styled.div`
     flex-flow: row nowrap;
     min-height: 100vh;
     background-color: ${props => props.theme.pine};
+    //xs
+    @media all and (max-width:767px){
+        padding: 0em;
+    }
     
 `;
 
@@ -31,6 +35,24 @@ const LandingPageContent = styled.div`
     height:auto;
     font-family: ${props => props.theme.zcoolXiaoWei}
 
+    //lg
+    @media all and (min-width:1200px){
+        max-width:350px;
+    }
+    //md
+    @media all and (max-width:1199){
+        max-width:300px;
+    }
+    //sm
+    @media all and (max-width:991px){
+        max-width:250pxpx;
+    }
+
+    //xs
+    @media all and (max-width:767px){
+        width:100%;
+    }
+
 `;
 const AboutUs = styled.div`
     display:flex;
@@ -38,7 +60,11 @@ const AboutUs = styled.div`
     min-height: 100vh;
     padding: 8em;
     background-color: ${props => props.theme.cream};
-    font-family: ${props => props.theme.zcoolXiaoWei}
+    font-family: ${props => props.theme.zcoolXiaoWei};
+    //xs
+    @media all and (max-width:767px){
+        padding: 0em;
+    }
 `;
 
 const AboutUsContent = styled.div`
@@ -51,7 +77,11 @@ const AboutUsContent = styled.div`
     height:auto;
     display:block;
     justify-content: center;
-    color: ${props=>props.theme.pine}
+    color: ${props=>props.theme.pine};
+    //xs
+    @media all and (max-width:767px){
+        width:100%;
+    }
 `;
 
 
@@ -114,10 +144,10 @@ const MainContent = () => {
                         </div>
                     </div>
                     <div className="row">
-                        <div className="col-6 p-5">
+                        <div className="col-lg-6 col-12 p-5">
                             <img src={`${arenaSuite}`} className="img-fluid"/>
                         </div>
-                        <div className="col-6 p-5">
+                        <div className="col-lg-6 col-12 p-5">
                             <h1>Rooms</h1>
                             <h1>Stay with Us</h1>
                             <h5>A sanctuary set against Mactan's historic downtown</h5>

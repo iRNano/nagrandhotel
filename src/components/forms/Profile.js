@@ -10,7 +10,11 @@ const ProfileWrapper = styled.div`
     min-height: 60vh;
     padding: 8em;
     background-color: ${props => props.theme.pine};
-    font-family: ${props => props.theme.zcoolXiaoWei}
+    font-family: ${props => props.theme.zcoolXiaoWei};
+    //xs
+    @media all and (max-width:767px){
+        padding: 0em;
+    }
 `;
 
 const ProfileContent = styled.div`
@@ -24,7 +28,11 @@ const ProfileContent = styled.div`
     height:auto;
     display:block;
     justify-content: center;
-    color: ${props=>props.theme.pine}
+    color: ${props=>props.theme.pine};
+    //xs
+    @media all and (max-width:767px){
+        width:100%;
+    }
 `;
 
 

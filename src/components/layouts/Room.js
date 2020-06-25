@@ -14,6 +14,10 @@ const RoomWrapper = styled.div`
     flex-flow: row nowrap;
     min-height: 100vh;
     background-color: ${props => props.theme.cream};
+    //xs
+    @media all and (max-width:767px){
+        padding: 0em;
+    }
 `;
 
 const RoomContent = styled.div`
@@ -91,14 +95,14 @@ const Room = ({user,token}) => {
                         <Fragment>
                         <Link to="/catalog"><Button size="large" location="admin" className="mb-5"> ALL ROOMS</Button></Link>
                         <div className="row">
-                            <div className="col-6">
+                            <div className="col-lg-6 col-12">
                                 { room.images.length>0 ?
                                     <img src={`${URL}${room.images[0].path}`}/> :
                                     null
                                 }
                                 
                             </div>
-                            <div className="col-6 p-5">
+                            <div className="col-lg-6 col-12 p-5">
                                 <div className="pb-3">
                                 <Heading.H1 className="pb-5"location="rooms">{room.name}</Heading.H1>
                                 <Heading.H4 location="rooms" className="pb-5">{room.description}</Heading.H4>
