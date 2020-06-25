@@ -33,7 +33,7 @@ const LandingPageContent = styled.div`
     margin: 0 auto;
     max-width: 1920px;
     height:auto;
-    font-family: ${props => props.theme.zcoolXiaoWei}
+    font-family: ${props => props.theme.zcoolXiaoWei};
 
     //lg
     @media all and (min-width:1200px){
