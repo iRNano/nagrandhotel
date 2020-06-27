@@ -146,7 +146,7 @@ const MainContent = () => {
             <AboutUs>
                 <AboutUsContent>
                     <div className="row">
-                        <div className="col-12 text-center ">
+                        <div className="col-12 text-center p-5">
                             <img src={palmTree} />
                             <p>The Nagrand Resort & Spa is an ode to discovery, a love letter to life in the heart of Cebu.</p>
                             <Link to="/about-us">

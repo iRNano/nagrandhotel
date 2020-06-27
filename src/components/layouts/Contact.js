@@ -34,7 +34,7 @@ const Contact = () => {
         <ContactWrapper>
             <ContactContent>
                 <div className="row">
-                    <div className="col-lg-6 col-12">
+                    <div className="col-lg-6 col-12 py-5">
                         <h1>Get in touch</h1>
                         <p>We’re always happy to help, but first you may find what you need here in the frequently asked questions.</p>
                         <h1>The Nagrand Resort & Spa</h1>
