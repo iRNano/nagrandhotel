@@ -105,7 +105,7 @@ const FloatingText = styled.div`
 const SpecialOffer = styled.div`
   display: block;
   flex-flow: row nowrap;
-  min-height: 100vh;
+  //   min-height: 100vh;
   background-color: ${(props) => props.theme.blush};
   font-family: ${(props) => props.theme.zcoolXiaoWei};
 `;
@@ -180,14 +180,14 @@ const MainContent = () => {
       </AboutUs>
       <SpecialOffer>
         <SpecialOfferContent>
-          <div className="row text-center m-0" style={{ margin: "auto" }}>
+          <div className="row text-center" style={{ margin: "auto" }}>
             <div className="col-12 px-0 justify-content">
-              <img src={`${beach}`} className="w-100"></img>
+              <img src={`${beach}`} className="img-fluid"></img>
             </div>
-          </div>
-          <div className="row text-center  m-0" style={{ margin: "auto" }}>
-            <div className="col-12 px-0 py-5">
-              <h1>Sign up for Special offers and promotions</h1>
+            <div className="row text-center" style={{ margin: "auto" }}>
+              <div className="col-12 px-0 py-5">
+                <h1>Sign up for Special offers and promotions</h1>
+              </div>
             </div>
           </div>
         </SpecialOfferContent>

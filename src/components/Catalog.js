@@ -5,6 +5,7 @@ import Heading from "../components/shared/Heading";
 import { Link } from "react-router-dom";
 import Button from "../components/shared/Button";
 import { URL } from "../config";
+import axios from "axios";
 
 const RoomWrapper = styled.div`
   background-color: ${(props) => props.theme.cream};
@@ -27,10 +28,18 @@ const RoomContent = styled.div`
 
 const Catalog = ({ user, token }) => {
   const [rooms, setRooms] = useState([]);
+
   useEffect(() => {
-    fetch(`${URL}/rooms`)
-      .then((res) => res.json())
-      .then((data) => setRooms(data));
+    const rooms = async () => {
+      const { data } = await axios.get(`${URL}/rooms`);
+      setRooms(data);
+    };
+
+    rooms();
+
+    // fetch(`${URL}/rooms`)
+    //   .then((res) => res.json())
+    //   .then((data) => setRooms(data));
   }, []);
 
   const showRooms = rooms.map((room) => (
