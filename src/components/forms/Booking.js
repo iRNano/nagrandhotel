@@ -19,6 +19,11 @@ const BookingWrapper = styled.div`
     flex-flow: row nowrap;
     min-height: 100vh;
     background-color: ${props => props.theme.pine};
+    idth: 250pxpx;
+    //xs
+    @media all and (max-width: 767px) {
+      padding: 0em;
+    }
 `;
 
 const BookingContent = styled.div`
@@ -34,7 +39,11 @@ const BookingContent = styled.div`
     justify-content: center;
     font-family: ${props=>props.theme.montserratLight};
     font-size: 2rem;
-    color: ${props=>props.theme.pine}
+    color: ${props=>props.theme.pine};
+    @media all and (max-width: 767px) {
+        margin-top: 114px;
+        width: 100%;
+    }
 
 `;
 
@@ -186,17 +195,17 @@ const Booking = ({user,token}) => {
     return(
         <BookingWrapper>
             <BookingContent className="p-5">
-                <Heading.H1 location="checkout" className="text-center pb-3">Dates of Stay</Heading.H1>    
+                <Heading.H1 location="checkout" className="text-center py-3">Dates of Stay</Heading.H1>    
                 <hr/>     
                 <Fragment>
                     <div style={{"display":"flex"}}className="row pb-2">
-                        <div className="col-4">
+                        <div className="col-lg-4 col-12">
                         <input className="w-100"type="date" name="checkin" onChange={(e) =>dateHandler(e)}/>
                         </div>
-                        <div className="col-4">
+                        <div className="col-lg-4 col-12">
                         <input className="w-100"type="date" name="checkout" onChange={(e) => dateHandler(e)}/>
                         </div>   
-                        <div className="col-4">
+                        <div className="col-lg-4 col-12">
                             <Button location="booking" size="large" onClick={()=> {
                             onClickHandler(dates)
                             setBooking(true)
