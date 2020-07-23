@@ -186,7 +186,9 @@ const MainContent = () => {
             </div>
             <div className="row text-center" style={{ margin: "auto" }}>
               <div className="col-12 px-0 py-5">
-                <h1>Sign up for Special offers and promotions</h1>
+                <Heading.H1 location="profile">
+                  Sign up for Special offers and promotions
+                </Heading.H1>
               </div>
             </div>
           </div>

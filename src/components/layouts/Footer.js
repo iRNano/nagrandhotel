@@ -22,6 +22,7 @@ const FooterContent = styled.div`
   @media all and (max-width: 767px) {
     width: 100%;
     font-size: 0.7rem;
+
     .align {
       text-align: center;
     }
@@ -61,7 +62,7 @@ const Footer = () => {
             <p>F. +6332 441 5421</p>
           </div>
         </div>
-        <div className="row w-100 py-5">
+        <div className="row text-center py-5" style={{ margin: "auto" }}>
           <div className="col-lg-6 col-12">
             <small>
               Copyright 2020 All rights reserved | Adrian Valdepenas
