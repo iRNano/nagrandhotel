@@ -1,6 +1,7 @@
 import React from "react";
 import nagrand from "../../images/Nagrandcream.png";
 import styled from "styled-components";
+import { Link, NavItem } from "react-router-dom";
 
 const FooterStyle = styled.div`
   background-color: ${(props) => props.theme.pine};
@@ -29,6 +30,10 @@ const FooterContent = styled.div`
   }
 `;
 
+const FooterLinks = styled.p`
+  color: ${(props) => props.theme.cream};
+`;
+
 const BrandImg = styled.img.attrs({
   src: nagrand,
 })`
@@ -45,17 +50,25 @@ const Footer = () => {
               <BrandImg></BrandImg>
             </div>
           </div>
-          <div className="col-lg-3 col-4">
+          <div className="col-lg-3 col-12 py-2 text-center">
             <p>The Nagrand Resort & Spa</p>
             <p>Buyong, Maribago Mactan Island,</p>
             <p>Lapu-Lapu City, 6015, Philippines</p>
           </div>
-          <div className="col-lg-4 col-4 text-center">
-            <p>About Us</p>
-            <p>Contact Us</p>
-            <p>Services</p>
+          <div className="col-lg-4 col-12 py-2 text-center">
+            <Link as={Link} to="/about-us">
+              <FooterLinks>About Us</FooterLinks>
+            </Link>
+
+            <Link to="/contact">
+              <FooterLinks>Contact Us</FooterLinks>
+            </Link>
+
+            <Link to="/catalog">
+              <FooterLinks>Rooms</FooterLinks>
+            </Link>
           </div>
-          <div className="col-lg-2 col-4 text-center">
+          <div className="col-lg-2 col-12 py-2 text-center">
             <p>Reservations</p>
             <p>T. +6332 402 1435</p>
             <p>M. +6332 413 7876</p>

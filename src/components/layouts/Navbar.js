@@ -21,13 +21,6 @@ const TopNav = ({ user, token, logout }) => {
   if (!user && !token) {
     guestLinks = (
       <Fragment>
-        {/* <NavItem>
-                        <Link to="/login" className="nav-link">Login</Link>                    
-                </NavItem>
-                <NavItem>
-                        <Link to="/register" className="nav-link">Register</Link>                    
-                </NavItem> */}
-
         <NavItem>
           <Link to="/catalog" className="nav-link">
             Rooms

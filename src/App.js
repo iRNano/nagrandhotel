@@ -23,6 +23,7 @@ import * as theme from "./config/theme";
 import Checkout from "./components/forms/Checkout";
 import Transactions from "./components/layouts/Transactions";
 import Confirmation from "./components/Confirmation";
+import ScrollToTop from "./ScrollToTop";
 
 const App = () => {
   const [user, setUser] = useState({});
@@ -53,6 +54,7 @@ const App = () => {
     <div className="App">
       <ThemeProvider theme={theme}>
         <Router>
+          <ScrollToTop />
           <Navbar user={user} token={token} logout={logout} />
           <Switch>
             <Route exact path="/">
@@ -95,8 +97,9 @@ const App = () => {
               <Confirmation user={user} token={token} />
             </Route>
           </Switch>
+
+          <Footer />
         </Router>
-        <Footer />
       </ThemeProvider>
     </div>
   );
