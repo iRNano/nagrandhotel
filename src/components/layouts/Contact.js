@@ -51,7 +51,7 @@ const Contact = () => {
             <p>F. +6332 441 5421</p>
             <p>E: reservations@thenagrand.com</p>
           </div>
-          <div className="col-lg-6 col-12">
+          <div className="col-lg-6 col-12 py-5">
             <img src={contact} className="img-fluid"></img>
           </div>
         </div>
