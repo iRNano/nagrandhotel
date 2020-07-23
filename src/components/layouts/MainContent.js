@@ -19,7 +19,7 @@ const LandingPage = styled.div`
   background-color: ${(props) => props.theme.pine};
   //xs
   @media all and (max-width: 767px) {
-    padding: 0em;
+    padding: 1em;
   }
 `;
 
@@ -38,18 +38,31 @@ const LandingPageContent = styled.div`
   @media all and (min-width: 1200px) {
     max-width: 1920px;
   }
-  //md
-  @media all and (max-width: 1199) {
-  }
-  //sm
-  @media all and (max-width: 991px) {
-  }
-
   //xs
   @media all and (max-width: 767px) {
     width: 100%;
-    max-width: 250pxpx;
+    // background-size: 300px;
   }
+`;
+
+const LandingHeading = styled.h2`
+  font-size: 5rem;
+  color: white;
+  line-height: 5rem;
+  @media all and (max-width: 767px) {
+    font-size: 3rem;
+    line-height: 3rem;
+  }
+`;
+
+const FloatingText = styled.div`
+    position relative;
+    right:10%;
+    top:30%;
+    @media all and (max-width:767px){
+        right:0%;
+    }
+    
 `;
 const AboutUs = styled.div`
   display: flex;
@@ -80,26 +93,6 @@ const AboutUsContent = styled.div`
   @media all and (max-width: 767px) {
     width: 100%;
   }
-`;
-
-const LandingHeading = styled.h2`
-  font-size: 5rem;
-  color: white;
-  line-height: 5rem;
-  @media all and (max-width: 767px) {
-    font-size: 3rem;
-    line-height: 3rem;
-  }
-`;
-
-const FloatingText = styled.div`
-    position relative;
-    right:10%;
-    top:30%;
-    @media all and (max-width:767px){
-        right:0%;
-    }
-    
 `;
 
 const SpecialOffer = styled.div`
@@ -136,6 +129,7 @@ const MainContent = () => {
               </Button>
             </Link>
           </FloatingText>
+          {/* <img src={landingPageImage} className="img-fluid" /> */}
         </LandingPageContent>
       </LandingPage>
       <AboutUs>
