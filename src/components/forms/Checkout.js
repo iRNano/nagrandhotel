@@ -13,6 +13,10 @@ const BookingWrapper = styled.div`
   flex-flow: row nowrap;
   min-height: 100vh;
   background-color: ${(props) => props.theme.pine};
+  @media all and (max-width: 767px) {
+    padding: 0em;
+    min-height: 100%;
+  }
 `;
 
 const BookingContent = styled.div`
@@ -67,13 +71,13 @@ const Checkout = ({ setCheckout }) => {
         <Fragment>
           {!paid ? (
             <Fragment>
-              <div className="row text-center pt-3">
+              <div className="row text-center pt-3 " style={{ margin: "auto" }}>
                 <div className="col-12">
                   <Heading.H1 location="checkout">Reservations</Heading.H1>
                   <hr />
                 </div>
               </div>
-              <div className="row p-5">
+              <div className="row p-5" style={{ margin: "auto" }}>
                 {cartItems.length ? (
                   <Fragment>
                     <div className="col-12 col-lg-6">
@@ -81,7 +85,7 @@ const Checkout = ({ setCheckout }) => {
                         Your Accommodation/s
                       </Heading.H1>
 
-                      <div className="row">
+                      <div className="row " style={{ margin: "auto" }}>
                         {cartItems.map((item) => {
                           return (
                             <Fragment key={item._id}>

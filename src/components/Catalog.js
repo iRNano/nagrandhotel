@@ -7,7 +7,6 @@ import Button from "../components/shared/Button";
 import { URL } from "../config";
 import axios from "axios";
 
-
 const RoomWrapper = styled.div`
   background-color: ${(props) => props.theme.cream};
   padding: 8em;
@@ -21,10 +20,13 @@ const RoomWrapper = styled.div`
 `;
 
 const RoomContent = styled.div`
-    width: 70%;
-    margin: 0 auto;
-    padding-top: 5%:
-
+  width: 70%;
+  margin: 0 auto;
+  padding-top: 5%;
+  @media all and (max-width: 767px) {
+    margin-top: 114px;
+    width: 100%;
+  }
 `;
 
 const Catalog = ({ user, token }) => {
