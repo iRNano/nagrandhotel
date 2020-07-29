@@ -91,31 +91,6 @@ const AddRoom = () => {
     setImagePreview(imgPreview);
   };
 
-  //quantity handler
-  // const quantityHandler = (quantity, productId) => {
-  //     // // alert("Quantity: "+ quantity +" - "+ productId)
-  //     // let itemToUpdate = cartItems.find(item => item._id === productId)
-  //     // itemToUpdate.quantity = parseInt(quantity)
-  //     // console.log(itemToUpdate.quantity)
-  //     // let updatedCart = cartItems.map(item=>{
-  //     //     return item._id === productId ? {...itemToUpdate} : item
-  //     // })
-  //     // localStorage.setItem('cartItems', JSON.stringify(updatedCart))
-  //     // setCartItems(JSON.parse(localStorage.getItem('cartItems')))
-
-  // }
-
-  // //quantity handler
-  // const roomHandler = (quantity) => {
-  //     let arrayOfinputs = []
-  //     for(let i = 0; i<quantity;i++){
-  //         arrayOfinputs.push(<input type="text" name={`room${i}`} onChange={(e)=>roomNumbersHandler(i, e)}/>)
-  //     }
-  //     return (
-  //         arrayOfinputs.map(input => input)
-  //     )
-  // }
-  //onSubmitHandler
   const onSubmitHandler = (e) => {
     e.preventDefault();
     const product = new FormData();

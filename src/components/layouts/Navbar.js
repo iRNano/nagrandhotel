@@ -106,14 +106,14 @@ const TopNav = ({ user, token, logout }) => {
 
   return (
     <nav
-      style={{ "background-color": "#4D5C58" }}
-      class="navbar navbar-expand-lg navbar-dark fixed-top"
+      style={{ backgroundColor: "#4D5C58" }}
+      className="navbar navbar-expand-lg navbar-dark fixed-top"
     >
-      <Link class="navbar-brand" to="/">
+      <Link className="navbar-brand" to="/">
         <BrandImg></BrandImg>
       </Link>
       <button
-        class="navbar-toggler"
+        className="navbar-toggler"
         type="button"
         data-toggle="collapse"
         data-target="#navbarSupportedContent"
@@ -121,10 +121,10 @@ const TopNav = ({ user, token, logout }) => {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon"></span>
       </button>
 
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <div className="collapse navbar-collapse" id="navbarSupportedContent">
         {/* <ul class="navbar-nav mr-auto">
                     <li class="nav-item active">
                         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>

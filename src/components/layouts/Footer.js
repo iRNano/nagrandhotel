@@ -46,7 +46,7 @@ const Footer = () => {
       <FooterContent>
         <div className="row " style={{ margin: "0 auto" }}>
           <div className="col-lg-3 col-12 py-2">
-            <div style={{ display: "flex", "justify-content": "center" }}>
+            <div style={{ display: "flex", justifyContent: "center" }}>
               <BrandImg></BrandImg>
             </div>
           </div>

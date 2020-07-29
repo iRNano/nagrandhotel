@@ -28,13 +28,6 @@ import ScrollToTop from "./ScrollToTop";
 const App = () => {
   const [user, setUser] = useState({});
   const [token, setToken] = useState("");
-  //logout
-  const logout = () => {
-    localStorage.clear();
-    setUser({});
-    setToken("");
-    window.location.href = "/";
-  };
 
   useEffect(() => {
     if (token) {
@@ -50,6 +43,15 @@ const App = () => {
       setToken(localStorage.getItem("token"));
     }
   }, [token]);
+
+  //logout
+  const logout = () => {
+    localStorage.clear();
+    setUser({});
+    setToken("");
+    window.location.href = "/";
+  };
+
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
