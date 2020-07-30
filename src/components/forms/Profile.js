@@ -1,8 +1,9 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect } from "react";
 import { Tabs, Tab } from "react-bootstrap";
 import styled from "styled-components";
 import Login from "./Login";
 import Register from "./Register";
+import AccountDetail from "./AccountDetail";
 
 const ProfileWrapper = styled.div`
   display: flex;
@@ -39,8 +40,10 @@ const ProfileContent = styled.div`
 const Profile = ({ user, token }) => {
   return (
     <ProfileWrapper>
-      <ProfileContent>
-        {!user ? (
+      {user ? (
+        <AccountDetail user={user} />
+      ) : (
+        <ProfileContent>
           <Tabs defaultActiveKey="login" id="uncontrolled-tab-example">
             <Tab eventKey="login" title="Login" style={{ width: "100%" }}>
               <Login />
@@ -49,14 +52,8 @@ const Profile = ({ user, token }) => {
               <Register />
             </Tab>
           </Tabs>
-        ) : (
-          <Tabs defaultActiveKey="profile" id="uncontrolled-tab-example">
-            <Tab eventKey="register" title="Profile">
-              <Register />
-            </Tab>
-          </Tabs>
-        )}
-      </ProfileContent>
+        </ProfileContent>
+      )}
     </ProfileWrapper>
   );
 };

@@ -5,6 +5,8 @@ import Stripe from "./Stripe";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 import Confirmation from "../Confirmation";
+import axios from "axios";
+import { URL } from "../../config";
 
 //styles
 const BookingWrapper = styled.div`
@@ -42,12 +44,21 @@ const Checkout = ({ setCheckout }) => {
   const [transaction, setTransaction] = useState({});
   const [cartItems, setCartItems] = useState([]);
   const [paid, setPaid] = useState(false);
+  const [roomDetails, setRoomDetails] = useState([]);
+
   let total;
+
   useEffect(() => {
-    console.log("useeffect");
+    // GET ALL ROOMS
+    const roomDetails = async () => {
+      const { data } = await axios.get(`${URL}/rooms`);
+      setRoomDetails(data);
+    };
+    roomDetails();
+
     setCartItems(JSON.parse(localStorage.getItem("cartItems")));
   }, [paid, transaction]);
-
+  console.log(roomDetails);
   if (cartItems.length > 0) {
     let subTotals = cartItems.map(
       (item) => parseInt(item.price) * parseInt(item.quantity)
@@ -63,6 +74,7 @@ const Checkout = ({ setCheckout }) => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
     window.location.href = "/cart";
   };
+
   console.log(paid);
   console.log(transaction);
   return (
@@ -132,7 +144,7 @@ const Checkout = ({ setCheckout }) => {
               </div>
             </Fragment>
           ) : (
-            <Confirmation transaction={transaction} />
+            <Confirmation transaction={transaction} roomDetails={roomDetails} />
           )}
         </Fragment>
       </BookingContent>
