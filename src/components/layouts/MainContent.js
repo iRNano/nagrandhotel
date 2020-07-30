@@ -129,7 +129,6 @@ const MainContent = () => {
               </Button>
             </Link>
           </FloatingText>
-          {/* <img src={landingPageImage} className="img-fluid" /> */}
         </LandingPageContent>
       </LandingPage>
       <AboutUs>
