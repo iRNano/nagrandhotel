@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import styled from "styled-components";
@@ -10,6 +10,7 @@ import arenaSuite from "../../../src/images/arenasuite1166.png";
 import beach from "../../../src/images/beach1919.png";
 import Heading from "../shared/Heading";
 import palmTree from "../../../src/images/palmtree.png";
+import { URL } from "../../config";
 
 const LandingPage = styled.div`
   display: flex;
@@ -115,6 +116,22 @@ const SpecialOfferContent = styled.div`
   color: ${(props) => props.theme.pine};
 `;
 const MainContent = () => {
+  const [rooms, setRooms] = useState([]);
+  const [displayedRoom, setDisplayedRoom] = useState();
+
+  useEffect(() => {
+    fetch(`${URL}/rooms`)
+      .then((res) => res.json())
+      .then((data) => {
+        setRooms(data.slice(0, 3));
+        setDisplayedRoom(`${URL}/${data[0].images[0].path}`);
+      });
+  }, []);
+
+  const displayedRoomHandler = (room) => {
+    setDisplayedRoom(`${URL}/${room.images[0].path}`);
+  };
+
   return (
     <Fragment>
       <LandingPage>
@@ -149,7 +166,7 @@ const MainContent = () => {
           </div>
           <div className="row py-5" style={{ margin: "auto" }}>
             <div className="col-lg-6 col-12 ">
-              <img src={`${arenaSuite}`} className="img-fluid" />
+              <img src={displayedRoom} className="img-fluid" />
             </div>
             <div className="col-lg-6 col-12 ">
               <h1>Rooms</h1>
@@ -157,9 +174,13 @@ const MainContent = () => {
               <h5>A sanctuary set against Mactan's historic downtown</h5>
 
               <ul>
-                <li>Jungle Suite</li>
-                <li>Aqua Suite</li>
-                <li>Tiera Suite</li>
+                {rooms.map((room) => (
+                  <Fragment key={room._id}>
+                    <li onClick={() => displayedRoomHandler(room)}>
+                      {room.name}
+                    </li>
+                  </Fragment>
+                ))}
               </ul>
               <Link to="/catalog">
                 <Button location="aboutus" size="large" type="button">
