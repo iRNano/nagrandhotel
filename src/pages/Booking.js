@@ -1,6 +1,6 @@
 import React, { useState, Fragment, useEffect } from "react";
 import "react-dates/initialize";
-import Button from "../shared/Button";
+import Button from "../components/shared/Button";
 import styled from "styled-components";
 import {
   DateRangePicker,
@@ -8,14 +8,14 @@ import {
   DayPickerRangeController,
 } from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
-import Heading from "../shared/Heading";
-import BookingNavbar from "../layouts/BookingNavbar";
+import Heading from "../components/shared/Heading";
+import BookingNavbar from "../components/layouts/BookingNavbar";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Capacity from "./Capacity";
-import DatePicker from "./DatePicker";
-import Accommodation from "./Accommodation";
-import Checkout from "./Checkout";
-import { URL } from "../../config";
+import Capacity from "../components/forms/Capacity";
+import DatePicker from "../components/forms/DatePicker";
+import Accommodation from "../components/forms/Accommodation";
+import Checkout from "../components/forms/Checkout";
+import { URL } from "../config";
 
 const BookingWrapper = styled.div`
   display: block;

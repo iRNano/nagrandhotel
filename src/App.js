@@ -4,24 +4,24 @@ import jwt_decode from "jwt-decode";
 //layout
 import Navbar from "./components/layouts/Navbar";
 import Footer from "./components/layouts/Footer";
-import MainContent from "./components/layouts/MainContent";
-import AboutUs from "./components/layouts/AboutUs";
-import Contact from "./components/layouts/Contact";
-import Room from "./components/layouts/Room";
+import MainContent from "./pages/MainContent";
+import AboutUs from "./pages/AboutUs";
+import Contact from "./pages/Contact";
+import Room from "./pages/Room";
 //forms
 import Login from "./components/forms/Login";
 import Register from "./components/forms/Register";
 import AddRoom from "./components/forms/AddRoom";
-import Catalog from "./components/Catalog";
-import Booking from "./components/forms/Booking";
-import Profile from "./components/forms/Profile";
+import Catalog from "./pages/Catalog";
+import Booking from "./pages/Booking";
+import Profile from "./pages/Profile";
 // import EditRoom from './components/forms/EditRoom'
 import "./App.css";
 import Auth from "./components/Auth";
 import { ThemeProvider } from "styled-components";
 import * as theme from "./config/theme";
 import Checkout from "./components/forms/Checkout";
-import Transactions from "./components/layouts/Transactions";
+import Transactions from "./pages/Transactions";
 import Confirmation from "./components/Confirmation";
 import ScrollToTop from "./ScrollToTop";
 
@@ -35,7 +35,7 @@ const App = () => {
       let now = new Date();
 
       if (decoded.exp >= now.getTime()) {
-        localStorage.clear();
+          localStorage.clear();
       }
     }
     if (user) {

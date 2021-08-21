@@ -1,6 +1,5 @@
 import React, { useState, Fragment } from "react";
-import { Navbar, Collapse, NavbarToggler, Nav, NavItem } from "reactstrap";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import nagrand from "../../images/Nagrandcream.png";
 
@@ -11,138 +10,176 @@ const BrandImg = styled.img.attrs({
   height: auto;
 `;
 
-const StyledNavbar = styled.nav`
-    // background-color:${(props) => props.theme.pine}
+const StyledNav = styled.div`
+  position: fixed;
+  top: 0;
+  padding: 4em;
+  width: 100%;
+  background-color: ${(props) => props.theme.pine};
+  z-index: 100;
+  display: flex;
+  justify-content:space-between;
+  flex-wrap: wrap;
+  align-items:center;
+
+  @media (max-width: 768px){
+    padding: 2em;
+  }
 `;
+const NavUnlisted = styled.ul`
+  display: flex;
+  padding: 0;
+  margin: 0;
+
+  a {
+    text-decoration: none;
+  }
+  li {
+    color: ${(props) => props.theme.cream};
+    margin: 0 0.8rem;
+    font-size: 1rem;
+    position: relative;
+    list-style: none;
+    text-align: center;
+  }
+
+  .current {
+    li {
+      color: ${(props) => props.theme.blush};
+    }
+  }
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+    width: 100%;
+    overflow: hidden;
+    max-height:  ${({collapsed}) => (collapsed ? "300px" : "0")};
+    transition: max-height 0.3s ease-in;
+  }
+`;
+
+const Hamburger = styled.div`
+  display: none;
+  flex-direction: column;
+
+  span {
+    height: 2px;
+    width: 40px;
+    background: ${(props) => props.theme.cream};
+    margin-bottom: 6px;
+    border-radius: 5px;
+  }
+
+  @media (max-width: 768px) {
+    display: flex;
+  }
+`;
+
 const TopNav = ({ user, token, logout }) => {
   const [collapsed, setCollapsed] = useState(true);
   let guestLinks, authLinks;
+  let menulinks = []
   //links
+  let notLoggedOnLinks = [
+    {path: "/", name: "HOME"},
+    { path: "/catalog", name: "ROOMS" },
+    { path: "/about-us", name: "ABOUT US" },
+    { path: "/contact", name: "CONTACT" },
+    { path: "/profile", name: "PROFILE" },
+  ];
+
+  let logInnedLinks = [
+    {path: "/", name: "HOME"},
+    { path: "/catalog", name: "ROOMS" },
+    { path: "/booking", name: "BOOKING" },
+    { path: "/about-us", name: "ABOUT US" },
+    { path: "/contact", name: "CONTACT" },
+    { path: "/profile", name: "PROFILE" },
+  ];
+
+  let adminLinks = [
+    { path: "/contact", name: "CONTACT" },
+    { path: "/profile", name: "PROFILE" },
+  ];
   if (!user && !token) {
-    guestLinks = (
-      <Fragment>
-        <NavItem>
-          <Link to="/catalog" className="nav-link">
-            Rooms
-          </Link>
-        </NavItem>
-        {/* <NavItem>
-                        <Link to="/booking" className="nav-link">Booking</Link>                    
-                </NavItem> */}
-        <NavItem>
-          <Link to="/about-us" className="nav-link">
-            About Us
-          </Link>
-        </NavItem>
-        <NavItem>
-          <Link to="/contact" className="nav-link">
-            Contact
-          </Link>
-        </NavItem>
-        <NavItem>
-          <Link to="/profile" className="nav-link">
-            <i className="fas fa-user-circle"></i>
-          </Link>
-        </NavItem>
-      </Fragment>
-    );
+    menulinks = notLoggedOnLinks
+    //       <Link to="/profile" className="nav-link">
+    //         <i className="fas fa-user-circle"></i>
+    //       </Link>
+
   } else {
-    authLinks = (
-      <Fragment>
-        {user && user.isAdmin === false ? (
-          <Fragment>
-            <NavItem>
-              <Link to="/catalog" className="nav-link">
-                Rooms
-              </Link>
-            </NavItem>
-            <NavItem>
-              <Link to="/booking" className="nav-link">
-                Booking
-              </Link>
-            </NavItem>
-            <NavItem>
-              <Link to="/about-us" className="nav-link">
-                About Us
-              </Link>
-            </NavItem>
 
-            <NavItem>
-              <Link to="/contact" className="nav-link">
-                Contact
-              </Link>
-            </NavItem>
-            <NavItem>
-              <Link to="/profile" className="nav-link">
-                {user ? user.fullname : <i class="fas fa-user-circle"></i>}
-              </Link>
-            </NavItem>
-          </Fragment>
-        ) : null}
+    if(user && !user.isAdmin) menulinks = logInnedLinks
+    if(user.isAdmin) menulinks = adminLinks
 
-        {user.isAdmin ? (
-          <Fragment>
-            <NavItem>
-              <Link to="/catalog" className="nav-link">
-                Rooms
-              </Link>
-            </NavItem>
-            <NavItem>
-              <Link to="/transactions" className="nav-link">
-                Transactions
-              </Link>
-            </NavItem>
-          </Fragment>
-        ) : null}
+        //       <Link to="/profile" className="nav-link">
+        //         {user ? user.fullname : <i class="fas fa-user-circle"></i>}
+        //       </Link>
 
-        <NavItem>
-          <Link to="/" className="nav-link" onClick={logout}>
-            Logout
-          </Link>
-        </NavItem>
-      </Fragment>
-    );
+
+    menulinks.push({ path: "/", name: "LOGOUT" });
+
   }
 
   return (
-    <nav
-      style={{ backgroundColor: "#4D5C58" }}
-      className="navbar navbar-expand-lg navbar-dark fixed-top"
-    >
-      <Link className="navbar-brand" to="/">
-        <BrandImg></BrandImg>
-      </Link>
-      <button
-        className="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span className="navbar-toggler-icon"></span>
-      </button>
+    <StyledNav>
+      <BrandImg></BrandImg>
+      <Hamburger onClick={() => setCollapsed(!collapsed)}>
+        <span></span>
+        <span></span>
+        <span></span>
+      </Hamburger>
+      <NavUnlisted collapsed={collapsed}>
+        {menulinks.map((link, index)=> (
+          <NavLink key={index} to={link.path} exact activeClassName={link.name !== "LOGOUT" ? "current": ''}>
+            <li>{link.name}</li>
+          </NavLink>
+        ))}
+      </NavUnlisted>
+    </StyledNav>
+    // <nav
+    //   style={{ backgroundColor: "#4D5C58" }}
+    //   className="navbar navbar-expand-lg navbar-dark fixed-top"
+    // >
+    //   <Link className="navbar-brand" to="/">
+    //     <BrandImg></BrandImg>
+    //   </Link>
+    //   <Hamburger >
+    //     <span></span>
+    //     <span></span>
+    //     <span></span>
+    //   </Hamburger>
+    //   <button
+    //     className="navbar-toggler"
+    //     type="button"
+    //     data-toggle="collapse"
+    //     data-target="#navbarSupportedContent"
+    //     aria-controls="navbarSupportedContent"
+    //     aria-expanded="false"
+    //     aria-label="Toggle navigation"
+    //   >
+    //     <span className="navbar-toggler-icon"></span>
+    //   </button>
 
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
-        {/* <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
-                
-                    <li class="nav-item">
-                        <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
-                    </ul> */}
-        <ul className="navbar-nav ml-auto">
-          {guestLinks}
-          {authLinks}
-        </ul>
-      </div>
-    </nav>
+    //   <div className="collapse navbar-collapse" id="navbarSupportedContent">
+    //     {/* <ul class="navbar-nav mr-auto">
+    //                 <li class="nav-item active">
+    //                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+    //                 </li>
+    //                 <li class="nav-item">
+    //                     <a class="nav-link" href="#">Link</a>
+    //                 </li>
+
+    //                 <li class="nav-item">
+    //                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+    //                 </li>
+    //                 </ul> */}
+    //     <ul className="navbar-nav ml-auto">
+    //       {guestLinks}
+    //       {authLinks}
+    //     </ul>
+    //   </div>
+    // </nav>
   );
 };
 
@@ -167,3 +204,4 @@ const TopNav = ({ user, token, logout }) => {
             </Navbar> */
 }
 export default TopNav;
+

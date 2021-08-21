@@ -1,9 +1,9 @@
 import React, { Fragment, useEffect } from "react";
 import { Tabs, Tab } from "react-bootstrap";
 import styled from "styled-components";
-import Login from "./Login";
-import Register from "./Register";
-import AccountDetail from "./AccountDetail";
+import Login from "../components/forms/Login";
+import Register from "../components/forms/Register";
+import AccountDetail from "../components/forms/AccountDetail";
 
 const ProfileWrapper = styled.div`
   display: flex;

@@ -43,7 +43,6 @@ const Button = styled.button`
         }
         return (
             "color: white;"
-            
         )
     }}
 

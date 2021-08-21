@@ -3,65 +3,65 @@ import { Link } from "react-router-dom";
 
 import styled from "styled-components";
 //shared styled components
-import Button from "../shared/Button";
-import Wrapper from "../shared/Wrapper";
-import landingPageImage from "../../../src/images/home2189.png";
-import arenaSuite from "../../../src/images/arenasuite1166.png";
-import beach from "../../../src/images/beach1919.png";
-import Heading from "../shared/Heading";
-import palmTree from "../../../src/images/palmtree.png";
-import { URL } from "../../config";
+import Button from "../components/shared/Button";
+import Wrapper from "../components/shared/Wrapper";
+import landingPageImage from "../images/home2189.png";
+import landingPageImageMobile from "../images/home1095.png";
+import arenaSuite from "../images/arenasuite1166.png";
+import beach from "../images/beach1919.png";
+import Heading from "../components/shared/Heading";
+import palmTree from "../images/palmtree.png";
+import { URL } from "../config";
 
 const LandingPage = styled.div`
+  
   display: flex;
-  padding: 8em;
-  flex-flow: row nowrap;
+  position: relative;
   min-height: 100vh;
   background-color: ${(props) => props.theme.pine};
   //xs
-  @media all and (max-width: 767px) {
-    padding: 1em;
-  }
+  // @media all and (max-width: 767px) {
+  //   padding: 1em;
+  // }
 `;
 
 const LandingPageContent = styled.div`
-  background-image: url(${landingPageImage});
-  background-size: cover;
+  
+  
+  position: relative;
+  margin: 13em auto 10em auto;
+  width: 70%;
+  background:url(${landingPageImage});
+  background-size:contain;
   background-repeat: no-repeat;
   background-position: center;
-  width: 60%;
-  margin: 0 auto;
-
-  height: auto;
+  
+  
   font-family: ${(props) => props.theme.zcoolXiaoWei};
-
-  //lg
-  @media all and (min-width: 1200px) {
-    max-width: 1920px;
-  }
-  //xs
-  @media all and (max-width: 767px) {
+  @media (max-width: 768px){
+    margin: 0 0 10em 0;
     width: 100%;
-    // background-size: 300px;
+    background-size: cover;
   }
 `;
 
 const LandingHeading = styled.h2`
-  font-size: 5rem;
+  font-size: clamp(3rem, 1rem + 10vw, 10rem);
   color: white;
-  line-height: 5rem;
+  line-height: clamp(3rem, 1rem + 10vw, 10rem);
   @media all and (max-width: 767px) {
-    font-size: 3rem;
-    line-height: 3rem;
+    line-height: 4.5rem;
   }
 `;
 
 const FloatingText = styled.div`
-    position relative;
-    right:10%;
-    top:30%;
+    position absolute;
+    top: 30%;
+    left: 4%;
+    margin: 0 auto;
     @media all and (max-width:767px){
-        right:0%;
+        top:80%;
+        left:6%;
     }
     
 `;

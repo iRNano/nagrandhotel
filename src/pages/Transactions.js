@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Fragment } from "react";
 import styled from "styled-components";
-import { URL } from "../../config";
-import Heading from "../shared/Heading";
+import { URL } from "../config";
+import Heading from "../components/shared/Heading";
 
 const TransactionWrapper = styled.div`
   display: block;

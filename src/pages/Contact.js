@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import contact from "../../../src/images/contact.png";
+import contact from "../images/contact.png";
 
 const ContactWrapper = styled.div`
   display: block;

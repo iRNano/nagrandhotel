@@ -1,12 +1,12 @@
 import React, { useEffect, useState, Fragment } from "react";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
-import Heading from "../shared/Heading";
-import Button from "../shared/Button";
+import Heading from "../components/shared/Heading";
+import Button from "../components/shared/Button";
 import { Link } from "react-router-dom";
-import EditRoom from "../forms/EditRoom";
+import EditRoom from "../components/forms/EditRoom";
 import Swal from "sweetalert2";
-import { URL } from "../../config";
+import { URL } from "../config";
 
 const RoomWrapper = styled.div`
   display: block;
