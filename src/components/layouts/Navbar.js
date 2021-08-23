@@ -37,10 +37,11 @@ const NavUnlisted = styled.ul`
   li {
     color: ${(props) => props.theme.cream};
     margin: 0 0.8rem;
-    font-size: 1rem;
+    font-size: .8rem;
     position: relative;
     list-style: none;
     text-align: center;
+    font-family: ${props => props.theme.fontfamily.monsterrat}
   }
 
   .current {

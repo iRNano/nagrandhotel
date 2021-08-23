@@ -1,10 +1,15 @@
 import styled from "styled-components"
 
 const Button = styled.button`
+    --bgColor: Transparent;
     appearance: none;
-    background-color: Transparent;
-    adding: 0.25em 0.5em;
+    background-color: var(--bgColor);
+    padding: .75em 1.5em;
     transition: background-color 0.25s, color 0.25s;
+    border: .05em solid ${props=>props.theme.colors.pine};
+    font-family: Montserrat;
+    color: ${props=>props.theme.colors.pine};
+    letter-spacing: 0.1em;
 
     &:hover {
         ${props => {
@@ -23,7 +28,7 @@ const Button = styled.button`
             )
         }}
         background-color: ${props=>props.theme.blush};
-        border: none
+        border: none;
         cursor: pointer;
     };
     
@@ -31,18 +36,10 @@ const Button = styled.button`
     ${props => {
         switch(props.location){
             case 'landing': 
-                return "color: white;";
-            case 'aboutus':
-                return `color: ${props.theme.pine};`;
-            case 'profile':
-                return `color: ${props.theme.pine};`;
-            case 'booking':
-                return `color: ${props.theme.pine};`;
-            case 'admin':
-                    return `color: ${props.theme.pine};`;
+                return `--bgColor: ${props.theme.colors.blush}; border: none; font-weight:600;`;
         }
         return (
-            "color: white;"
+            `color: ${props.theme.colors.pine};`
         )
     }}
 
@@ -50,12 +47,12 @@ const Button = styled.button`
         
         switch(props.size){
             case 'small': 
-                return "font-size: 12px;";
+                return "font-size: 0.75rem;";
             case 'large':
-                return "font-size: 20px;";
+                return "font-size: 1.25rem;";
         }
 
-        return "font-size: 16px;";
+        return "font-size: 1rem;";
     }}
 
 `;

@@ -55,7 +55,7 @@ const LandingHeading = styled.h2`
 `;
 
 const FloatingText = styled.div`
-    position absolute;
+    position: absolute;
     top: 30%;
     left: 4%;
     margin: 0 auto;
@@ -142,7 +142,7 @@ const MainContent = () => {
             <LandingHeading>Here</LandingHeading>
             <Link to="/booking">
               <Button location="landing" size="large" type="button">
-                Book now
+                BOOK NOW
               </Button>
             </Link>
           </FloatingText>
