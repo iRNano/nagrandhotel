@@ -32,7 +32,7 @@ const ProfileContent = styled.div`
   color: ${(props) => props.theme.pine};
   //xs
   @media all and (max-width: 767px) {
-    margin-top: 114px;
+    padding-top: 114px;
     width: 100%;
   }
 `;

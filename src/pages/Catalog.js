@@ -25,7 +25,7 @@ const RoomContent = styled.div`
   margin: 0 auto;
   padding-top: 5%;
   @media all and (max-width: 767px) {
-    margin-top: 114px;
+    padding-top: 114px;
     width: 100%;
   }
 `;

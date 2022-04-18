@@ -27,7 +27,7 @@ const AboutUsContent = styled.div`
   font-size: 2rem;
   color: ${(props) => props.theme.pine};
   @media all and (max-width: 767px) {
-    margin-top: 114px;
+    padding-top:114px;
   }
 `;
 const AboutUs = () => {

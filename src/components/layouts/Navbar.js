@@ -6,14 +6,17 @@ import nagrand from "../../images/Nagrandcream.png";
 const BrandImg = styled.img.attrs({
   src: nagrand,
 })`
-  max-width: 200px;
-  height: auto;
+  max-width: 150px;
+
+  @media (max-width: 768px) {
+max-width: 80px;
+  }
 `;
 
 const StyledNav = styled.div`
   position: fixed;
   top: 0;
-  padding: 4em;
+  padding: 2em;
   width: 100%;
   background-color: ${(props) => props.theme.pine};
   z-index: 100;
