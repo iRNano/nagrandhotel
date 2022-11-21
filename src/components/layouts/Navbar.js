@@ -7,7 +7,7 @@ const BrandImg = styled.img.attrs({
   src: nagrand,
 })`
   max-width: 150px;
-
+  color:red;
   @media (max-width: 768px) {
 max-width: 80px;
   }
@@ -18,7 +18,7 @@ const StyledNav = styled.div`
   top: 0;
   padding: 2em;
   width: 100%;
-  background-color: ${(props) => props.theme.pine};
+  // background-color: ${(props) => props.theme.pine};
   z-index: 100;
   display: flex;
   justify-content:space-between;
@@ -107,20 +107,12 @@ const TopNav = ({ user, token, logout }) => {
   ];
   if (!user && !token) {
     menulinks = notLoggedOnLinks
-    //       <Link to="/profile" className="nav-link">
-    //         <i className="fas fa-user-circle"></i>
-    //       </Link>
+
 
   } else {
 
     if(user && !user.isAdmin) menulinks = logInnedLinks
     if(user.isAdmin) menulinks = adminLinks
-
-        //       <Link to="/profile" className="nav-link">
-        //         {user ? user.fullname : <i class="fas fa-user-circle"></i>}
-        //       </Link>
-
-
     menulinks.push({ path: "/", name: "LOGOUT" });
 
   }
@@ -141,71 +133,8 @@ const TopNav = ({ user, token, logout }) => {
         ))}
       </NavUnlisted>
     </StyledNav>
-    // <nav
-    //   style={{ backgroundColor: "#4D5C58" }}
-    //   className="navbar navbar-expand-lg navbar-dark fixed-top"
-    // >
-    //   <Link className="navbar-brand" to="/">
-    //     <BrandImg></BrandImg>
-    //   </Link>
-    //   <Hamburger >
-    //     <span></span>
-    //     <span></span>
-    //     <span></span>
-    //   </Hamburger>
-    //   <button
-    //     className="navbar-toggler"
-    //     type="button"
-    //     data-toggle="collapse"
-    //     data-target="#navbarSupportedContent"
-    //     aria-controls="navbarSupportedContent"
-    //     aria-expanded="false"
-    //     aria-label="Toggle navigation"
-    //   >
-    //     <span className="navbar-toggler-icon"></span>
-    //   </button>
 
-    //   <div className="collapse navbar-collapse" id="navbarSupportedContent">
-    //     {/* <ul class="navbar-nav mr-auto">
-    //                 <li class="nav-item active">
-    //                     <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-    //                 </li>
-    //                 <li class="nav-item">
-    //                     <a class="nav-link" href="#">Link</a>
-    //                 </li>
-
-    //                 <li class="nav-item">
-    //                     <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-    //                 </li>
-    //                 </ul> */}
-    //     <ul className="navbar-nav ml-auto">
-    //       {guestLinks}
-    //       {authLinks}
-    //     </ul>
-    //   </div>
-    // </nav>
   );
 };
-
-{
-  /* <Navbar style={{backgroundColor:"#4D5C58"}}expand="md" fixed="top" className="px-5 navbar-dark">
-                <Link to="/" className="navbar-brand">
-                    <BrandImg></BrandImg>
-                </Link>
-                <NavbarToggler onClick={()=>setCollapsed(!collapsed)} className="mr-2"/>
-                <Collapse isOpen={!collapsed} navbar>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav ml-auto">
-                            {guestLinks}  
-                            {authLinks}
-                        </ul>
-                    </div>
-                        
-                        
-                        
-                    
-                </Collapse>
-            </Navbar> */
-}
 export default TopNav;
 

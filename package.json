@@ -17,6 +17,7 @@
     "react-datepicker": "^2.14.1",
     "react-dates": "^21.8.0",
     "react-dom": "^16.13.1",
+    "react-intersection-observer": "^9.4.1",
     "react-is": "^16.13.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.1",

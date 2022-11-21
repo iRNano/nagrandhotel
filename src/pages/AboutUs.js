@@ -1,39 +1,15 @@
 import React from "react";
-import styled from "styled-components";
+import * as S from './style'
+import * as T from '../config/theme'
 
-const AboutUsWrapper = styled.div`
-  display: block;
-  padding: 8em;
-  flex-flow: row nowrap;
-  min-height: 100vh;
-  background-color: ${(props) => props.theme.cream};
-  //xs
-  @media all and (max-width: 767px) {
-    padding: 0em;
-  }
-`;
-
-const AboutUsContent = styled.div`
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 70%;
-  margin: 0 auto;
-  max-width: 1920px;
-  height: auto;
-  display: block;
-  justify-content: center;
-  font-family: ${(props) => props.theme.montserratLight};
-  font-size: 2rem;
-  color: ${(props) => props.theme.pine};
-  @media all and (max-width: 767px) {
-    padding-top:114px;
-  }
-`;
 const AboutUs = () => {
   return (
-    <AboutUsWrapper>
-      <AboutUsContent>
+        <S.Wrapper bgColor={T.cream}>
+          <S.Content 
+          fontFamily={T.montserratLight} 
+          color={T.pine} 
+          fontSize={"2rem"}>
+
         <div className="row">
           <div className="col-12 py-5">
             <h1 style={{ fontSize: "4rem" }}>Hello!</h1>
@@ -68,8 +44,9 @@ const AboutUs = () => {
             </p>
           </div>
         </div>
-      </AboutUsContent>
-    </AboutUsWrapper>
+          </S.Content>
+        </S.Wrapper>
+      
   );
 };
 

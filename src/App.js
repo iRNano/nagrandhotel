@@ -4,7 +4,7 @@ import jwt_decode from "jwt-decode";
 //layout
 import Navbar from "./components/layouts/Navbar";
 import Footer from "./components/layouts/Footer";
-import MainContent from "./pages/MainContent";
+import Landing from "./pages/Landing/index";
 import AboutUs from "./pages/AboutUs";
 import Contact from "./pages/Contact";
 import Room from "./pages/Room";
@@ -60,7 +60,7 @@ const App = () => {
           <Navbar user={user} token={token} logout={logout} />
           <Switch>
             <Route exact path="/">
-              <MainContent />
+              <Landing />
             </Route>
             <Route path="/about-us">
               <AboutUs />

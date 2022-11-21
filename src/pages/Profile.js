@@ -4,6 +4,8 @@ import styled from "styled-components";
 import Login from "../components/forms/Login";
 import Register from "../components/forms/Register";
 import AccountDetail from "../components/forms/AccountDetail";
+import * as S from './style'
+import * as T from '../config/theme'
 
 const ProfileWrapper = styled.div`
   display: flex;
@@ -39,11 +41,11 @@ const ProfileContent = styled.div`
 
 const Profile = ({ user, token }) => {
   return (
-    <ProfileWrapper>
+    <S.Wrapper minHeight={"60vh"} bgColor={T.pine} fontFamily={T.zcoolXiaoWei}>
       {user ? (
         <AccountDetail user={user} />
       ) : (
-        <ProfileContent>
+        <S.Content bgColor={T.cream} color={T.pine} width={"30%"}>
           <Tabs defaultActiveKey="login" id="uncontrolled-tab-example">
             <Tab eventKey="login" title="Login" style={{ width: "100%" }}>
               <Login />
@@ -52,9 +54,9 @@ const Profile = ({ user, token }) => {
               <Register />
             </Tab>
           </Tabs>
-        </ProfileContent>
+        </S.Content>
       )}
-    </ProfileWrapper>
+    </S.Wrapper>
   );
 };
 

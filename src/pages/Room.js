@@ -1,43 +1,14 @@
 import React, { useEffect, useState, Fragment } from "react";
 import { useParams } from "react-router-dom";
-import styled from "styled-components";
 import Heading from "../components/shared/Heading";
 import Button from "../components/shared/Button";
 import { Link } from "react-router-dom";
 import EditRoom from "../components/forms/EditRoom";
 import Swal from "sweetalert2";
 import { URL } from "../config";
+import * as S from './style'
+import * as T from '../config/theme'
 
-const RoomWrapper = styled.div`
-  display: block;
-  padding: 8em;
-  flex-flow: row nowrap;
-  min-height: 100vh;
-  background-color: ${(props) => props.theme.cream};
-  //xs
-  @media all and (max-width: 767px) {
-    padding: 1em;
-  }
-`;
-
-const RoomContent = styled.div`
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 70%;
-  margin: 0 auto;
-  max-width: 1920px;
-  height: auto;
-  display: block;
-  justify-content: center;
-  font-family: ${(props) => props.theme.montserratLight};
-  font-size: 2rem;
-  color: ${(props) => props.theme.pine};
-  @media all and (max-width: 767px) {
-    padding-top: 114px;
-    width: 100%;
-  }
-`;
 const Room = ({ user, token }) => {
   let { _id } = useParams();
   const [editing, setEditing] = useState(false);
@@ -81,9 +52,9 @@ const Room = ({ user, token }) => {
     });
   };
   return (
-    <RoomWrapper>
+    <S.Wrapper bgColor={T.cream}>
       {loaded ? (
-        <RoomContent>
+        <S.Content fontFamily={T.montserratLight} fontSize={"2rem"} color={T.pine}>
           {editing ? (
             <EditRoom room={room} setEditing={setEditing} />
           ) : (
@@ -146,9 +117,9 @@ const Room = ({ user, token }) => {
               </div>
             </Fragment>
           )}
-        </RoomContent>
+        </S.Content>
       ) : null}
-    </RoomWrapper>
+    </S.Wrapper>
   );
 };
 

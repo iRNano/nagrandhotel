@@ -1,5 +1,4 @@
-import React, { useState, useEffect, Fragment } from "react";
-import { Container } from "reactstrap";
+import React, { useState, useEffect} from "react";
 import styled from "styled-components";
 import Heading from "../components/shared/Heading";
 import { Link } from "react-router-dom";
@@ -41,32 +40,7 @@ const Catalog = ({ user, token }) => {
 
     rooms();
 
-    // fetch(`${URL}/rooms`)
-    //   .then((res) => res.json())
-    //   .then((data) => setRooms(data));
   }, []);
-
-  // const showRooms = rooms.map((room) => (
-  //   <Fragment key={room._id}>
-  //     <div className="col-lg-6 col-12 py-5">
-  //       <div className="card w-100">
-  //         {room.images.length > 0 ? (
-  //           <img
-  //             src={`${URL}${room.images[0].path}`}
-  //             className="img-fluid card-img-top"
-  //           ></img>
-  //         ) : null}
-  //       </div>
-  //       <div className="text-center p-2">
-  //         <Heading.H1 location="rooms">{room.name}</Heading.H1>
-  //         <p>{room.description}</p>
-  //         <Link to={`/rooms/${room._id}`}>
-  //           <Heading.H4 location="rooms">VIEW ROOM</Heading.H4>
-  //         </Link>
-  //       </div>
-  //     </div>
-  //   </Fragment>
-  // ));
 
   return (
     <RoomWrapper>

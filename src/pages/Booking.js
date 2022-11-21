@@ -16,6 +16,8 @@ import DatePicker from "../components/forms/DatePicker";
 import Accommodation from "../components/forms/Accommodation";
 import Checkout from "../components/forms/Checkout";
 import { URL } from "../config";
+import * as S from './style'
+import * as T from '../config/theme'
 
 const BookingWrapper = styled.div`
   display: block;
@@ -209,66 +211,130 @@ const Booking = ({ user, token }) => {
   });
 
   return (
-    <BookingWrapper>
-      <BookingContent className="p-5">
-        <Heading.H1 location="checkout" className="text-center py-3">
-          Dates of Stay
-        </Heading.H1>
-        <hr />
-        <Fragment>
-          <div style={{ display: "flex" }} className="row pb-2">
-            <div className="col-lg-4 col-12">
-              <input
-                className="w-100"
-                type="date"
-                name="checkin"
-                onChange={(e) => dateHandler(e)}
-              />
-            </div>
-            <div className="col-lg-4 col-12">
-              <input
-                className="w-100"
-                type="date"
-                name="checkout"
-                onChange={(e) => dateHandler(e)}
-              />
-            </div>
-            <div className="col-lg-4 col-12">
-              <Button
-                location="booking"
-                size="large"
-                onClick={() => {
-                  onClickHandler(dates);
-                  setBooking(true);
-                }}
-              >
-                Check Available Rooms
-              </Button>
-            </div>
-          </div>
+    // <BookingWrapper>
+    //   <BookingContent className="p-5">
 
-          {booking && availableRooms.length > 0 ? (
-            <CatalogContainer>
-              <Heading.H1 location="checkout" className="text-center">
-                Accommodations
-              </Heading.H1>
-              <hr />
-              <div className="row">{showAvailableRooms}</div>
-              <div className="text-right " style={{ size: "5rem" }}>
-                <Link to="/checkout">
-                  <Button location="booking" size="large">
-                    Checkout
-                  </Button>
-                </Link>
-              </div>
-            </CatalogContainer>
-          ) : null}
-        </Fragment>
-        {/* {
-                    checkout? <Checkout availableRooms={availableRooms} setAvailableRooms={setAvailableRooms}/> : null
-                } */}
-      </BookingContent>
-    </BookingWrapper>
+    //     <S.Wrapper>
+    //       <S.Content>
+
+    //     <Heading.H1 location="checkout" className="text-center py-3">
+    //       Dates of Stay
+    //     </Heading.H1>
+    //     <hr />
+    //     <Fragment>
+    //       <div style={{ display: "flex" }} className="row pb-2">
+    //         <div className="col-lg-4 col-12">
+    //           <input
+    //             className="w-100"
+    //             type="date"
+    //             name="checkin"
+    //             onChange={(e) => dateHandler(e)}
+    //           />
+    //         </div>
+    //         <div className="col-lg-4 col-12">
+    //           <input
+    //             className="w-100"
+    //             type="date"
+    //             name="checkout"
+    //             onChange={(e) => dateHandler(e)}
+    //           />
+    //         </div>
+    //         <div className="col-lg-4 col-12">
+    //           <Button
+    //             location="booking"
+    //             size="large"
+    //             onClick={() => {
+    //               onClickHandler(dates);
+    //               setBooking(true);
+    //             }}
+    //           >
+    //             Check Available Rooms
+    //           </Button>
+    //         </div>
+    //       </div>
+
+    //       {booking && availableRooms.length > 0 ? (
+    //         <CatalogContainer>
+    //           <Heading.H1 location="checkout" className="text-center">
+    //             Accommodations
+    //           </Heading.H1>
+    //           <hr />
+    //           <div className="row">{showAvailableRooms}</div>
+    //           <div className="text-right " style={{ size: "5rem" }}>
+    //             <Link to="/checkout">
+    //               <Button location="booking" size="large">
+    //                 Checkout
+    //               </Button>
+    //             </Link>
+    //           </div>
+    //         </CatalogContainer>
+    //       ) : null}
+    //     </Fragment>
+    //       </S.Content>
+    //     </S.Wrapper>
+    //     {/* {
+    //                 checkout? <Checkout availableRooms={availableRooms} setAvailableRooms={setAvailableRooms}/> : null
+    //             } */}
+    //   </BookingContent>
+    // </BookingWrapper>
+     <S.Wrapper bgColor={T.pine}>
+     <S.Content fontFamily={T.montserratLight} bgColor={T.cream} color={T.pine} fontSize={"2rem"}>
+
+   <Heading.H1 location="checkout" className="text-center py-3">
+     Dates of Stay
+   </Heading.H1>
+   <hr />
+   <Fragment>
+     <div style={{ display: "flex" }} className="row pb-2">
+       <div className="col-lg-4 col-12">
+         <input
+           className="w-100"
+           type="date"
+           name="checkin"
+           onChange={(e) => dateHandler(e)}
+         />
+       </div>
+       <div className="col-lg-4 col-12">
+         <input
+           className="w-100"
+           type="date"
+           name="checkout"
+           onChange={(e) => dateHandler(e)}
+         />
+       </div>
+       <div className="col-lg-4 col-12">
+         <Button
+           location="booking"
+           size="large"
+           onClick={() => {
+             onClickHandler(dates);
+             setBooking(true);
+           }}
+         >
+           Check Available Rooms
+         </Button>
+       </div>
+     </div>
+
+     {booking && availableRooms.length > 0 ? (
+       <CatalogContainer>
+         <Heading.H1 location="checkout" className="text-center">
+           Accommodations
+         </Heading.H1>
+         <hr />
+         <div className="row">{showAvailableRooms}</div>
+         <div className="text-right " style={{ size: "5rem" }}>
+           <Link to="/checkout">
+             <Button location="booking" size="large">
+               Checkout
+             </Button>
+           </Link>
+         </div>
+       </CatalogContainer>
+     ) : null}
+   </Fragment>
+     </S.Content>
+   </S.Wrapper>
   );
 };
 export default Booking;
