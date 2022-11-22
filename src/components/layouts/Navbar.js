@@ -1,7 +1,9 @@
 import React, { useState, Fragment } from "react";
+import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import nagrand from "../../images/Nagrandcream.png";
+import * as T from '../../config/theme'
 
 const BrandImg = styled.img.attrs({
   src: nagrand,
@@ -18,7 +20,7 @@ const StyledNav = styled.div`
   top: 0;
   padding: 2em;
   width: 100%;
-  // background-color: ${(props) => props.theme.pine};
+  background-color: ${(props) => props.bgColor};
   z-index: 100;
   display: flex;
   justify-content:space-between;
@@ -79,8 +81,9 @@ const Hamburger = styled.div`
   }
 `;
 
-const TopNav = ({ user, token, logout }) => {
+const TopNav = ({ user, token, logout, activeSection }) => {
   const [collapsed, setCollapsed] = useState(true);
+  const [bgColor, setBgColor] = useState(null)
   let guestLinks, authLinks;
   let menulinks = []
   //links
@@ -117,8 +120,11 @@ const TopNav = ({ user, token, logout }) => {
 
   }
 
+  useEffect(()=>{
+    console.log(activeSection)
+  },[activeSection])
   return (
-    <StyledNav>
+    <StyledNav bgColor={activeSection}>
       <BrandImg></BrandImg>
       <Hamburger onClick={() => setCollapsed(!collapsed)}>
         <span></span>

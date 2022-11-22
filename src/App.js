@@ -28,6 +28,7 @@ import ScrollToTop from "./ScrollToTop";
 const App = () => {
   const [user, setUser] = useState({});
   const [token, setToken] = useState("");
+  const [activeSection, setActiveSection] = useState("")
 
   useEffect(() => {
     if (token) {
@@ -57,10 +58,10 @@ const App = () => {
       <ThemeProvider theme={theme}>
         <Router>
           <ScrollToTop />
-          <Navbar user={user} token={token} logout={logout} />
+          <Navbar user={user} token={token} logout={logout} activeSection={activeSection}/>
           <Switch>
             <Route exact path="/">
-              <Landing />
+              <Landing setActiveSection={setActiveSection}/>
             </Route>
             <Route path="/about-us">
               <AboutUs />

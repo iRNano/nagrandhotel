@@ -1,18 +1,22 @@
 import React, { Fragment, useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import * as S from './style'
+import * as T from '../../config/theme'
 //shared styled components
 import Button from "../../components/shared/Button";
 import beach from "../../images/beach1919.png";
 import Heading from "../../components/shared/Heading";
 import palmTree from "../../images/palmtree.png";
 import { URL } from "../../config";
+import { useInView} from 'react-intersection-observer'
 
-const MainContent = () => {
+const MainContent = ({setActiveSection}) => {
   const [rooms, setRooms] = useState([]);
   const [displayedRoom, setDisplayedRoom] = useState();
 
+  const landingRef = useRef()
   const aboutRef = useRef()
+  const specialRef = useRef()
 
   useEffect(() => {
     fetch(`${URL}/rooms`)
@@ -23,13 +27,34 @@ const MainContent = () => {
         if(data[0]?.images[0]?.path) setDisplayedRoom(`${URL}/${data[0].images[0].path}`);
       });
 
-      const observer = new IntersectionObserver((entries => {
+      const landingObs = new IntersectionObserver((entries => {
         const entry = (entries[0])
-        console.log(entry)
-        if(entry.isIntersecting) console.log('intersect')
+        
+        if(entry.isIntersecting) setActiveSection((prev) => prev !== T.pine && T.pine )
       }))
 
-      observer.observe(aboutRef.current)
+      const aboutObs = new IntersectionObserver((entries => {
+        const entry = (entries[0])
+        
+        if(entry.isIntersecting) setActiveSection((prev) => prev !== T.cream && T.cream)
+      }))
+      
+      const specialObs = new IntersectionObserver((entries => {
+        const entry = (entries[0])
+        console.log(entry)
+        if(entry.isIntersecting) setActiveSection((prev) => prev !== T.pine && T.pine)
+      }))
+      landingObs.observe(landingRef.current)
+      aboutObs.observe(aboutRef.current)
+      specialObs.observe(specialRef.current)
+      
+      return () => {
+        landingObs.disconnect()
+        aboutObs.disconnect()
+        specialObs.disconnect()
+        
+      }
+
   }, []);
 
   const displayedRoomHandler = (room) => {
@@ -38,7 +63,7 @@ const MainContent = () => {
 
   return (
     <Fragment>
-      <S.LandingPage>
+      <S.LandingPage ref={landingRef}>
         <S.LandingPageContent>
           <S.FloatingText>
             <S.LandingHeading>Find</S.LandingHeading>
@@ -94,7 +119,7 @@ const MainContent = () => {
           </div>
         </S.AboutUsContent>
       </S.AboutUs>
-      <S.SpecialOffer>
+      <S.SpecialOffer ref={specialRef}>
         <S.SpecialOfferContent>
           <div className="row text-center" style={{ margin: "auto" }}>
             <div className="col-12 px-0 justify-content">
