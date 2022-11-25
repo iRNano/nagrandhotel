@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState, useRef } from "react";
+import React, { Fragment, useEffect, useState, useRef, useMemo } from "react";
 import { Link } from "react-router-dom";
 import * as S from './style'
 import * as T from '../../config/theme'
@@ -14,9 +14,28 @@ const MainContent = ({setActiveSection}) => {
   const [rooms, setRooms] = useState([]);
   const [displayedRoom, setDisplayedRoom] = useState();
 
-  const landingRef = useRef()
-  const aboutRef = useRef()
-  const specialRef = useRef()
+  const landingRef = useRef(null)
+  const aboutRef = useRef(null)
+  const specialRef = useRef(null)
+
+  const observerHandler = (entries => {
+    const [entry] = entries
+    let color;
+
+    console.log('name',entry.target.id)
+    if(entry.target.id === 'landing' || entry.target.id === 'special') color = T.pine
+    if(entry.target.id === 'about') color = T.cream
+    
+    if(entry.isIntersecting) setActiveSection(color)
+  })
+
+  const options = useMemo(()=>{
+    return{
+      root: null,
+      rootMargin: '0px',
+      threshold: 0.9
+    }
+  },[])
 
   useEffect(() => {
     fetch(`${URL}/rooms`)
@@ -27,23 +46,12 @@ const MainContent = ({setActiveSection}) => {
         if(data[0]?.images[0]?.path) setDisplayedRoom(`${URL}/${data[0].images[0].path}`);
       });
 
-      const landingObs = new IntersectionObserver((entries => {
-        const entry = (entries[0])
-        
-        if(entry.isIntersecting) setActiveSection((prev) => prev !== T.pine && T.pine )
-      }))
-
-      const aboutObs = new IntersectionObserver((entries => {
-        const entry = (entries[0])
-        
-        if(entry.isIntersecting) setActiveSection((prev) => prev !== T.cream && T.cream)
-      }))
       
-      const specialObs = new IntersectionObserver((entries => {
-        const entry = (entries[0])
-        console.log(entry)
-        if(entry.isIntersecting) setActiveSection((prev) => prev !== T.pine && T.pine)
-      }))
+      const landingObs = new IntersectionObserver(observerHandler, options)
+      const aboutObs = new IntersectionObserver(observerHandler, options)
+      const specialObs = new IntersectionObserver(observerHandler, options)
+
+
       landingObs.observe(landingRef.current)
       aboutObs.observe(aboutRef.current)
       specialObs.observe(specialRef.current)
@@ -63,7 +71,7 @@ const MainContent = ({setActiveSection}) => {
 
   return (
     <Fragment>
-      <S.LandingPage ref={landingRef}>
+      <S.LandingPage ref={landingRef} id="landing">
         <S.LandingPageContent>
           <S.FloatingText>
             <S.LandingHeading>Find</S.LandingHeading>
@@ -77,7 +85,7 @@ const MainContent = ({setActiveSection}) => {
           </S.FloatingText>
         </S.LandingPageContent>
       </S.LandingPage>
-      <S.AboutUs ref={aboutRef}>
+      <S.AboutUs ref={aboutRef} id="about">
         <S.AboutUsContent>
           <div className="row py-5" style={{ margin: "auto" }}>
             <div className="col-12 text-center ">
@@ -119,7 +127,7 @@ const MainContent = ({setActiveSection}) => {
           </div>
         </S.AboutUsContent>
       </S.AboutUs>
-      <S.SpecialOffer ref={specialRef}>
+      <S.SpecialOffer ref={specialRef} id="special">
         <S.SpecialOfferContent>
           <div className="row text-center" style={{ margin: "auto" }}>
             <div className="col-12 px-0 justify-content">

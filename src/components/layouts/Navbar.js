@@ -92,8 +92,9 @@ const TopNav = ({ user, token, logout, activeSection }) => {
     { path: "/catalog", name: "ROOMS" },
     { path: "/about-us", name: "ABOUT US" },
     { path: "/contact", name: "CONTACT" },
-    { path: "/profile", name: "PROFILE" },
+    // { path: "/profile", name: "PROFILE" },
   ];
+
 
   let logInnedLinks = [
     {path: "/", name: "HOME"},
@@ -121,7 +122,7 @@ const TopNav = ({ user, token, logout, activeSection }) => {
   }
 
   useEffect(()=>{
-    console.log(activeSection)
+    console.log('activeSection',activeSection)
   },[activeSection])
   return (
     <StyledNav bgColor={activeSection}>
