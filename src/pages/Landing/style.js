@@ -36,9 +36,9 @@ const LandingPageContent = styled.div`
 `;
 
 const LandingHeading = styled.h2`
-  font-size: clamp(3rem, 1rem + 10vw, 10rem);
+  font-size: clamp(3rem, 1rem + 10vw, 7rem);
   color: white;
-  line-height: clamp(3rem, 1rem + 10vw, 10rem);
+  line-height: clamp(2rem, 1rem + 10vw, 5rem);
   @media all and (max-width: 767px) {
     line-height: 4.5rem;
   }
@@ -46,12 +46,20 @@ const LandingHeading = styled.h2`
 
 const FloatingText = styled.div`
     position: absolute;
-    top: 30%;
-    left: 4%;
+    transform: translate(0%, 100%);
     margin: 0 auto;
-    @media all and (max-width:767px){
-        top:80%;
-        left:6%;
+
+    @media (min-width: 769px and max-width: 992px ){
+      transform: translate(-20%, 30%);
+    }
+
+    @media (min-width: 993px and max-width: 1140px){
+      transform: translate(-10%, 40%);
+    margin: 0 auto;
+    }
+    button{
+      margin-top: 10%;
+      
     }
     
 `;

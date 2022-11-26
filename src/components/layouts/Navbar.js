@@ -11,7 +11,7 @@ const BrandImg = styled.img.attrs({
   max-width: 150px;
   color:red;
   @media (max-width: 768px) {
-max-width: 80px;
+  max-width: 80px;
   }
 `;
 
@@ -82,7 +82,7 @@ const Hamburger = styled.div`
 `;
 
 const TopNav = ({ user, token, logout, activeSection }) => {
-  const [collapsed, setCollapsed] = useState(true);
+  const [collapsed, setCollapsed] = useState(false);
   const [bgColor, setBgColor] = useState(null)
   let guestLinks, authLinks;
   let menulinks = []
@@ -126,7 +126,9 @@ const TopNav = ({ user, token, logout, activeSection }) => {
   },[activeSection])
   return (
     <StyledNav bgColor={activeSection}>
+      <NavLink to="/" exact>
       <BrandImg></BrandImg>
+      </NavLink>
       <Hamburger onClick={() => setCollapsed(!collapsed)}>
         <span></span>
         <span></span>
