@@ -47,6 +47,7 @@ const App = () => {
 
   //logout
   const logout = () => {
+    console.log('loguout')
     localStorage.clear();
     setUser({});
     setToken("");

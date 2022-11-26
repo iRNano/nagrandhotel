@@ -36,25 +36,27 @@ const LandingPageContent = styled.div`
 `;
 
 const LandingHeading = styled.h2`
-  font-size: clamp(3rem, 1rem + 10vw, 7rem);
+  font-size: clamp(1rem, 1rem + 10vw, 4rem);
   color: white;
-  line-height: clamp(2rem, 1rem + 10vw, 5rem);
-  @media all and (max-width: 767px) {
-    line-height: 4.5rem;
+  line-height: clamp(1rem, 1rem + 10vw, 2.5rem);
+
+  @media (min-width: 993px){
+    font-size: clamp(3rem, 1rem + 10vw, 7rem);
+    line-height: clamp(3rem, 1rem + 10vw, 5rem);
   }
 `;
 
 const FloatingText = styled.div`
     position: absolute;
-    transform: translate(0%, 100%);
+    transform: translate(10%, 250%);
     margin: 0 auto;
 
-    @media (min-width: 769px and max-width: 992px ){
-      transform: translate(-20%, 30%);
+    @media (min-width: 769px){
+      transform: translate(-20%, 150%);
     }
 
-    @media (min-width: 993px and max-width: 1140px){
-      transform: translate(-10%, 40%);
+    @media (min-width: 993px){
+      transform: translate(32%, 50%);
     margin: 0 auto;
     }
     button{

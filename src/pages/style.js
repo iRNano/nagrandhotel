@@ -10,6 +10,7 @@ const Wrapper = styled.div`
   //xs
   @media all and (max-width: 767px) {
     padding: 0em;
+    width:100%;
   }
 `;
 

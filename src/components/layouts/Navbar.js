@@ -84,42 +84,22 @@ const Hamburger = styled.div`
 const TopNav = ({ user, token, logout, activeSection }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [bgColor, setBgColor] = useState(null)
-  let guestLinks, authLinks;
-  let menulinks = []
+
   //links
-  let notLoggedOnLinks = [
+  let menulinks = [
     {path: "/", name: "HOME"},
     { path: "/catalog", name: "ROOMS" },
     { path: "/about-us", name: "ABOUT US" },
     { path: "/contact", name: "CONTACT" },
-    // { path: "/profile", name: "PROFILE" },
   ];
-
 
   let logInnedLinks = [
-    {path: "/", name: "HOME"},
-    { path: "/catalog", name: "ROOMS" },
     { path: "/booking", name: "BOOKING" },
-    { path: "/about-us", name: "ABOUT US" },
-    { path: "/contact", name: "CONTACT" },
     { path: "/profile", name: "PROFILE" },
+    {path: "/", name: "LOGOUT" }
   ];
 
-  let adminLinks = [
-    { path: "/contact", name: "CONTACT" },
-    { path: "/profile", name: "PROFILE" },
-  ];
-  if (!user && !token) {
-    menulinks = notLoggedOnLinks
-
-
-  } else {
-
-    if(user && !user.isAdmin) menulinks = logInnedLinks
-    if(user.isAdmin) menulinks = adminLinks
-    menulinks.push({ path: "/", name: "LOGOUT" });
-
-  }
+    if(user) menulinks = [...menulinks, ...logInnedLinks]
 
   useEffect(()=>{
     console.log('activeSection',activeSection)
@@ -137,7 +117,7 @@ const TopNav = ({ user, token, logout, activeSection }) => {
       <NavUnlisted collapsed={collapsed}>
         {menulinks.map((link, index)=> (
           <NavLink key={index} to={link.path} exact activeClassName={link.name !== "LOGOUT" ? "current": ''}>
-            <li>{link.name}</li>
+            <li onClick={() => link.name === 'LOGOUT' ? logout() : null}>{link.name}</li>
           </NavLink>
         ))}
       </NavUnlisted>
