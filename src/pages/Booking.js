@@ -19,40 +19,6 @@ import { URL } from "../config";
 import * as S from './style'
 import * as T from '../config/theme'
 
-const BookingWrapper = styled.div`
-  display: block;
-  padding: 8em;
-  flex-flow: row nowrap;
-  min-height: 100vh;
-  background-color: ${(props) => props.theme.pine};
-  idth: 250pxpx;
-  //xs
-  @media all and (max-width: 767px) {
-    padding: 0em;
-    min-height: 100%;
-  }
-`;
-
-const BookingContent = styled.div`
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  background-color: ${(props) => props.theme.cream};
-  width: 70%;
-  margin: 0 auto;
-  max-width: 1920px;
-  height: auto;
-  display: block;
-  justify-content: center;
-  font-family: ${(props) => props.theme.montserratLight};
-  font-size: 2rem;
-  color: ${(props) => props.theme.pine};
-  @media all and (max-width: 767px) {
-    padding-top: 114px;
-    width: 100%;
-  }
-`;
-
 const CatalogContainer = styled.div`
   width: 80%;
   margin: 0 auto;
@@ -68,6 +34,9 @@ const Booking = ({ user, token }) => {
   const [bookings, setBookings] = useState([]);
   const [booking, setBooking] = useState(false);
   const [nights, setNights] = useState(0);
+  const [startDate, setStartDate] = useState(null)
+  const [endDate, setEndDate] = useState(null)
+  const [focusedInput, setFocusedInput] = useState(null)
 
   const [checkout, setCheckout] = useState(false);
 
@@ -161,6 +130,9 @@ const Booking = ({ user, token }) => {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   };
 
+  const changedDateHandler = (start, end) => {
+    console.log('change', start + end)
+  }
   //Show available rooms
   const showAvailableRooms = availableRooms.map((room) => {
     if (room.quantity > 0) {
@@ -211,72 +183,6 @@ const Booking = ({ user, token }) => {
   });
 
   return (
-    // <BookingWrapper>
-    //   <BookingContent className="p-5">
-
-    //     <S.Wrapper>
-    //       <S.Content>
-
-    //     <Heading.H1 location="checkout" className="text-center py-3">
-    //       Dates of Stay
-    //     </Heading.H1>
-    //     <hr />
-    //     <Fragment>
-    //       <div style={{ display: "flex" }} className="row pb-2">
-    //         <div className="col-lg-4 col-12">
-    //           <input
-    //             className="w-100"
-    //             type="date"
-    //             name="checkin"
-    //             onChange={(e) => dateHandler(e)}
-    //           />
-    //         </div>
-    //         <div className="col-lg-4 col-12">
-    //           <input
-    //             className="w-100"
-    //             type="date"
-    //             name="checkout"
-    //             onChange={(e) => dateHandler(e)}
-    //           />
-    //         </div>
-    //         <div className="col-lg-4 col-12">
-    //           <Button
-    //             location="booking"
-    //             size="large"
-    //             onClick={() => {
-    //               onClickHandler(dates);
-    //               setBooking(true);
-    //             }}
-    //           >
-    //             Check Available Rooms
-    //           </Button>
-    //         </div>
-    //       </div>
-
-    //       {booking && availableRooms.length > 0 ? (
-    //         <CatalogContainer>
-    //           <Heading.H1 location="checkout" className="text-center">
-    //             Accommodations
-    //           </Heading.H1>
-    //           <hr />
-    //           <div className="row">{showAvailableRooms}</div>
-    //           <div className="text-right " style={{ size: "5rem" }}>
-    //             <Link to="/checkout">
-    //               <Button location="booking" size="large">
-    //                 Checkout
-    //               </Button>
-    //             </Link>
-    //           </div>
-    //         </CatalogContainer>
-    //       ) : null}
-    //     </Fragment>
-    //       </S.Content>
-    //     </S.Wrapper>
-    //     {/* {
-    //                 checkout? <Checkout availableRooms={availableRooms} setAvailableRooms={setAvailableRooms}/> : null
-    //             } */}
-    //   </BookingContent>
-    // </BookingWrapper>
      <S.Wrapper bgColor={T.pine}>
      <S.Content fontFamily={T.montserratLight} bgColor={T.cream} color={T.pine} fontSize={"2rem"}>
 
@@ -334,6 +240,15 @@ const Booking = ({ user, token }) => {
      ) : null}
    </Fragment>
      </S.Content>
+     <DateRangePicker
+  startDate={startDate} // momentPropTypes.momentObj or null,
+  startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
+  endDate={endDate} // momentPropTypes.momentObj or null,
+  endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
+  onDatesChange={({ startDate, endDate }) => changedDateHandler(startDate, endDate)} // PropTypes.func.isRequired,
+  focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
+  onFocusChange={focusedInput => setAvailableRooms(focusedInput)} // PropTypes.func.isRequired,
+/>
    </S.Wrapper>
   );
 };

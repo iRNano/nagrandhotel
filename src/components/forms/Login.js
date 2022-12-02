@@ -20,8 +20,11 @@ const Login = () => {
             }
         }
         fetch(`${URL}/users/login`, reqOptions)
-        .then(res =>res.json())
+        .then(res => 
+{            console.log('res', res)
+        res.json()})
         .then(data => {
+            console.log('login', data)
             if(data.status === 200){
                 Swal.fire({
                     icon: 'success',
