@@ -22,14 +22,14 @@ const Button = styled.button`
     display:block;
 `;
 
-const BookingNavbar = () => {
+const BookingNavbar = ({setActiveTab}) => {
     return(
         <Headerstyle>
             <Navbar>
-                <Button>Capacity</Button>
-                <Button>Pick A Date</Button>
-                <Button>Accomodations</Button>
-                <Button>Checkout</Button>
+                <Button onClick={()=> setActiveTab(0)}>Capacity</Button>
+                <Button onClick={()=> setActiveTab(1)}>Pick A Date</Button>
+                <Button onClick={()=> setActiveTab(2)}>Accomodations</Button>
+                <Button onClick={()=> setActiveTab(3)}>Checkout</Button>
             </Navbar>
         </Headerstyle>
     )

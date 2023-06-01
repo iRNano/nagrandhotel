@@ -20,31 +20,29 @@ const Login = () => {
             }
         }
         fetch(`${URL}/users/login`, reqOptions)
-        .then(res => 
-{            console.log('res', res)
-        res.json()})
+        .then(res =>  res.json())
         .then(data => {
             console.log('login', data)
-            if(data.status === 200){
-                Swal.fire({
-                    icon: 'success',
-                    text: data.message,
-                    timer: 1500,
-                    showConfirmButton: false
-                })
-                localStorage.setItem('user', JSON.stringify(data.user))
-                localStorage.setItem('token', data.token)
-                let cartItems = []
-                localStorage.setItem('cartItems', JSON.stringify(cartItems))
-                window.location.href = "/"
-            }else{
-                Swal.fire({
-                    icon: 'error',
-                    text: data.message,
-                    timer: 1500,
-                    showConfirmButton: false
-                })
-            }
+            // if(data.details){
+            //     Swal.fire({
+            //         icon: 'success',
+            //         text: data.message,
+            //         timer: 1500,
+            //         showConfirmButton: false
+            //     })
+            //     localStorage.setItem('user', JSON.stringify(data.details.user))
+            //     localStorage.setItem('token', data.details.token)
+            //     let cartItems = []
+            //     localStorage.setItem('cartItems', JSON.stringify(cartItems))
+            //     window.location.href = "/"
+            // }else{
+            //     Swal.fire({
+            //         icon: 'error',
+            //         text: data.details.message,
+            //         timer: 1500,
+            //         showConfirmButton: false
+            //     })
+            // }
         })
     }
 

@@ -1,3 +1,19 @@
 .nav-color {
     background-color:red;
 }
+
+.DateInput.DateInput_1{
+    display:none
+}
+
+.DateRangePickerInput_arrow{
+    display:none;
+}
+
+.DateRangePicker{
+    display:flex;
+    justify-content: center;
+}
+.DateRangePicker_picker{
+    position:unset;
+}

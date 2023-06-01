@@ -91,6 +91,7 @@ const TopNav = ({ user, token, logout, activeSection }) => {
     { path: "/catalog", name: "ROOMS" },
     { path: "/about-us", name: "ABOUT US" },
     { path: "/contact", name: "CONTACT" },
+    { path: "/login", name: "LOG IN" },
   ];
 
   let logInnedLinks = [
@@ -99,7 +100,7 @@ const TopNav = ({ user, token, logout, activeSection }) => {
     {path: "/", name: "LOGOUT" }
   ];
 
-    if(user) menulinks = [...menulinks, ...logInnedLinks]
+    if(user) menulinks = [...menulinks.filter(obj => obj.name === "LOG IN"), ...logInnedLinks]
 
   useEffect(()=>{
     console.log('activeSection',activeSection)

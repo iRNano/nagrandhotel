@@ -1,5 +1,7 @@
 import React, { useState, Fragment, useEffect } from "react";
 import "react-dates/initialize";
+import momentPropTypes from 'react-moment-proptypes';
+import moment from 'moment';
 import Button from "../components/shared/Button";
 import styled from "styled-components";
 import {
@@ -18,6 +20,7 @@ import Checkout from "../components/forms/Checkout";
 import { URL } from "../config";
 import * as S from './style'
 import * as T from '../config/theme'
+import BookingTabWdiget from "../components/layouts/BookingTabWidget";
 
 const CatalogContainer = styled.div`
   width: 80%;
@@ -36,7 +39,8 @@ const Booking = ({ user, token }) => {
   const [nights, setNights] = useState(0);
   const [startDate, setStartDate] = useState(null)
   const [endDate, setEndDate] = useState(null)
-  const [focusedInput, setFocusedInput] = useState(null)
+  const [focusedInput, setFocusedInput] = useState('startDate')
+  const [activeTab, setActiveTab] = useState(0)
 
   const [checkout, setCheckout] = useState(false);
 
@@ -132,6 +136,8 @@ const Booking = ({ user, token }) => {
 
   const changedDateHandler = (start, end) => {
     console.log('change', start + end)
+    setStartDate(start)
+    setEndDate(end)
   }
   //Show available rooms
   const showAvailableRooms = availableRooms.map((room) => {
@@ -183,16 +189,24 @@ const Booking = ({ user, token }) => {
   });
 
   return (
-     <S.Wrapper bgColor={T.pine}>
-     <S.Content fontFamily={T.montserratLight} bgColor={T.cream} color={T.pine} fontSize={"2rem"}>
+    <S.Wrapper bgColor={T.pine}>
+      <S.Content fontFamily={T.montserratLight} bgColor={T.cream} color={T.pine} fontSize={"2rem"}>
 
-   <Heading.H1 location="checkout" className="text-center py-3">
-     Dates of Stay
-   </Heading.H1>
-   <hr />
-   <Fragment>
-     <div style={{ display: "flex" }} className="row pb-2">
-       <div className="col-lg-4 col-12">
+        <Heading.H1 location="checkout" className="text-center py-3">
+          Booking
+        </Heading.H1>
+        <hr />
+        <Fragment>
+
+          <BookingNavbar setActiveTab={setActiveTab}/>
+          <BookingTabWdiget
+           activeTab={activeTab}
+           drpProps={{startDate, endDate, focusedInput, setFocusedInput, changedDateHandler}}
+
+           />
+          {/* <div style={{ display: "flex" }} className="row pb-2"> */}
+          
+            {/* <div className="col-lg-4 col-12">
          <input
            className="w-100"
            type="date"
@@ -219,10 +233,10 @@ const Booking = ({ user, token }) => {
          >
            Check Available Rooms
          </Button>
-       </div>
-     </div>
+       </div> */}
+          {/* </div> */}
 
-     {booking && availableRooms.length > 0 ? (
+          {/* {booking && availableRooms.length > 0 ? (
        <CatalogContainer>
          <Heading.H1 location="checkout" className="text-center">
            Accommodations
@@ -237,19 +251,10 @@ const Booking = ({ user, token }) => {
            </Link>
          </div>
        </CatalogContainer>
-     ) : null}
-   </Fragment>
-     </S.Content>
-     <DateRangePicker
-  startDate={startDate} // momentPropTypes.momentObj or null,
-  startDateId="your_unique_start_date_id" // PropTypes.string.isRequired,
-  endDate={endDate} // momentPropTypes.momentObj or null,
-  endDateId="your_unique_end_date_id" // PropTypes.string.isRequired,
-  onDatesChange={({ startDate, endDate }) => changedDateHandler(startDate, endDate)} // PropTypes.func.isRequired,
-  focusedInput={focusedInput} // PropTypes.oneOf([START_DATE, END_DATE]) or null,
-  onFocusChange={focusedInput => setAvailableRooms(focusedInput)} // PropTypes.func.isRequired,
-/>
-   </S.Wrapper>
+     ) : null} */}
+        </Fragment>
+      </S.Content>
+    </S.Wrapper>
   );
 };
 export default Booking;

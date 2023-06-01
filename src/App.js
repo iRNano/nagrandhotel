@@ -83,7 +83,8 @@ const App = () => {
               <Catalog user={user} token={token} />
             </Route>
             <Route path="/booking">
-              {user ? <Booking user={user} token={token} /> : <Auth />}
+            <Booking user={user} token={token} />
+              {/* {user ? <Booking user={user} token={token} /> : <Auth />} */}
             </Route>
             <Route path="/rooms/:_id">
               <Room user={user} token={token} />
