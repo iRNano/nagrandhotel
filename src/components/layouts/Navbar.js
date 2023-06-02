@@ -91,12 +91,12 @@ const TopNav = ({ user, token, logout, activeSection }) => {
     { path: "/catalog", name: "ROOMS" },
     { path: "/about-us", name: "ABOUT US" },
     { path: "/contact", name: "CONTACT" },
-    { path: "/login", name: "LOG IN" },
+    { path: "/profile", name: "LOGIN" },
   ];
 
   let logInnedLinks = [
     { path: "/booking", name: "BOOKING" },
-    { path: "/profile", name: "PROFILE" },
+    
     {path: "/", name: "LOGOUT" }
   ];
 

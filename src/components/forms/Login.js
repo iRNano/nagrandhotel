@@ -15,34 +15,37 @@ const Login = () => {
         let reqOptions = {
             method: "POST",
             body: JSON.stringify(formData),
+            credentials: "include",
             headers: {
                 "Content-Type": "application/json"
-            }
+            },
+            
         }
         fetch(`${URL}/users/login`, reqOptions)
         .then(res =>  res.json())
         .then(data => {
             console.log('login', data)
-            // if(data.details){
-            //     Swal.fire({
-            //         icon: 'success',
-            //         text: data.message,
-            //         timer: 1500,
-            //         showConfirmButton: false
-            //     })
-            //     localStorage.setItem('user', JSON.stringify(data.details.user))
-            //     localStorage.setItem('token', data.details.token)
-            //     let cartItems = []
-            //     localStorage.setItem('cartItems', JSON.stringify(cartItems))
-            //     window.location.href = "/"
-            // }else{
-            //     Swal.fire({
-            //         icon: 'error',
-            //         text: data.details.message,
-            //         timer: 1500,
-            //         showConfirmButton: false
-            //     })
-            // }
+            console.log(document.cookie)
+            if(data.details){
+                Swal.fire({
+                    icon: 'success',
+                    text: data.message,
+                    timer: 1500,
+                    showConfirmButton: false
+                }) // useContext
+                // localStorage.setItem('user', JSON.stringify(data.details.user))
+                // localStorage.setItem('token', data.details.token)
+                // let cartItems = []
+                // localStorage.setItem('cartItems', JSON.stringify(cartItems))
+                window.location.href = "/"
+            }else{
+                Swal.fire({
+                    icon: 'error',
+                    text: data.details.message,
+                    timer: 1500,
+                    showConfirmButton: false
+                })
+            }
         })
     }
 
