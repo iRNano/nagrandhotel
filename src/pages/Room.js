@@ -70,7 +70,7 @@ const Room = ({ user, token }) => {
                   {room.images.length > 0 ? (
                     <img
                       className="img-fluid"
-                      src={`${URL}${room.images[0].path}`}
+                      src={room.images[0]}
                     />
                   ) : null}
                 </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect, useContext} from "react";
 import styled from "styled-components";
 import Heading from "../components/shared/Heading";
 import { Link } from "react-router-dom";
@@ -6,6 +6,7 @@ import Button from "../components/shared/Button";
 import { URL } from "../config";
 import axios from "axios";
 import RoomList from "../components/RoomList";
+import { AuthContext } from "../context/AuthContext";
 
 const RoomWrapper = styled.div`
   background-color: ${(props) => props.theme.cream};
@@ -29,9 +30,9 @@ const RoomContent = styled.div`
   }
 `;
 
-const Catalog = ({ user, token }) => {
+const Catalog = () => {
   const [rooms, setRooms] = useState([]);
-
+  const {user} = useContext(AuthContext)
   useEffect(() => {
     const rooms = async () => {
       const { data } = await axios.get(`${URL}/rooms`);

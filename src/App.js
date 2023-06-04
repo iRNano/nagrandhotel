@@ -24,6 +24,7 @@ import Checkout from "./components/forms/Checkout";
 import Transactions from "./pages/Transactions";
 import Confirmation from "./components/Confirmation";
 import ScrollToTop from "./ScrollToTop";
+import { AuthContextProvider } from "./context/AuthContext";
 
 const App = () => {
   const [user, setUser] = useState({});
@@ -56,6 +57,7 @@ const App = () => {
 
   return (
     <div className="App">
+      <AuthContextProvider>
       <ThemeProvider theme={theme}>
         <Router>
           <ScrollToTop />
@@ -77,10 +79,10 @@ const App = () => {
               <Login />
             </Route>
             <Route path="/add-room">
-              {user && token && user.isAdmin ? <AddRoom /> : <Auth />}
+              <AddRoom />
             </Route>
             <Route path="/catalog">
-              <Catalog user={user} token={token} />
+              <Catalog />
             </Route>
             <Route path="/booking">
             <Booking user={user} token={token} />
@@ -106,6 +108,7 @@ const App = () => {
           <Footer />
         </Router>
       </ThemeProvider>
+      </AuthContextProvider>
     </div>
   );
 };

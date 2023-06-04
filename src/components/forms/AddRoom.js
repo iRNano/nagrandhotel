@@ -50,14 +50,13 @@ const RoomContent = styled.div`
 const AddRoom = () => {
   const [formData, setFormData] = useState({});
   const [imagePreview, setImagePreview] = useState([]);
-  const [categories, setCategories] = useState([]);
-  const [roomNumbers, setRoomNumbers] = useState([]);
+  const [roomNumbers, setRoomNumbers] = useState("");
 
-  useEffect(() => {
-    fetch(`${url}/categories`)
-      .then((res) => res.json())
-      .then((data) => setCategories(data));
-  }, []);
+  // useEffect(() => {
+  //   fetch(`${url}/categories`)
+  //     .then((res) => res.json())
+  //     .then((data) => setCategories(data));
+  // }, []);
 
   //formData handler
   const onChangeHandler = (e) => {
@@ -67,16 +66,16 @@ const AddRoom = () => {
     });
   };
   //roomNumberHandler
-  const roomNumbersHandler = (i, e) => {
-    if (e.target) {
-      if (roomNumbers[i]) {
-        console.log(i);
-        roomNumbers[i] = e.target.value;
-      } else {
-        setRoomNumbers([...roomNumbers, e.target.value]);
-      }
-    }
-  };
+  // const roomNumbersHandler = (i, e) => {
+  //   if (e.target) {
+  //     if (roomNumbers[i]) {
+  //       console.log(i);
+  //       roomNumbers[i] = e.target.value;
+  //     } else {
+  //       setRoomNumbers([...roomNumbers, e.target.value]);
+  //     }
+  //   }
+  // };
 
   //File handler
   const handleFile = (e) => {
@@ -91,41 +90,87 @@ const AddRoom = () => {
     setImagePreview(imgPreview);
   };
 
-  const onSubmitHandler = (e) => {
+  const onSubmitHandler = async (e) => {
     e.preventDefault();
-    const product = new FormData();
-    product.append("name", formData.name);
-    product.append("description", formData.description);
-    product.append("categoryId", formData.categoryId);
-    product.append("price", formData.price);
-    product.append("quantity", formData.quantity);
-    roomNumbers.map((room) => product.append("rooms", room));
-    for (let i = 0; i < formData.images.length; i++) {
-      product.append("images", formData.images[i]);
-    }
-    fetch(`${url}/rooms`, {
-      method: "POST",
-      body: product,
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.status === 200) {
-          Swal.fire({
-            icon: "success",
-            text: data.message,
-            timer: 1500,
-            showConfirmButton: false,
+    // const product = new FormData();
+    // return console.log(formData)
+    // product.append("name", formData.name);
+    // product.append("description", formData.description);
+    // product.append("maxNumber", formData.maxNumber);
+    // product.append("price", formData.price);
+    
+    // // product.append("quantity", formData.quantity);
+    // product.append("roomNumbers",roomNumbers)
+    // if(formData.images.length) {
+    //   for (let i = 0; i < formData.images.length; i++) {
+    //     product.append("images", formData.images[i]);
+    //   }
+    // }
+    
+    // if(formData.images.length){
+      try{
+        console.log(formData.images)
+        const list = await Promise.all(
+          Object.values(formData.images).map(async file => {
+          const data = new FormData();
+          data.append("file", file);
+          data.append("upload_preset", "upload");
+          for (const pair of data.entries()) {
+            console.log(`${pair[0]}, ${pair[1]}`);
+          }
+          
+          const uploadRes = await fetch("https://api.cloudinary.com/v1_1/onandev/image/upload",{
+            method: 'POST',
+            body:data
           });
-          window.location.href = `/catalog`;
-        } else {
-          Swal.fire({
-            icon: "error",
-            text: "Please check your inputs",
-            timer: 1500,
-            showConfirmButton: false,
-          });
+          const uploadResJSON = await uploadRes.json()
+          console.log(uploadResJSON)
+          const { url } = uploadResJSON
+            return url;
+        
+        }))
+
+        
+        const newRoom = {
+          ...formData,
+          images: list,
+          roomNumbers: roomNumbers.split(',').map(room => ({number: room}))
         }
-      });
+
+        console.log('newRoom',newRoom)
+        fetch(`${url}/rooms`, {
+          method: "POST",
+          body: JSON.stringify(newRoom),
+          credentials: "include",
+          headers: {
+            "Content-Type": "application/json"
+        },
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data)
+            if (data) {
+              Swal.fire({
+                icon: "success",
+                text: data.message,
+                timer: 1500,
+                showConfirmButton: false,
+              });
+              window.location.href = `/catalog`;
+            } else {
+              Swal.fire({
+                icon: "error",
+                text: "Please check your inputs",
+                timer: 1500,
+                showConfirmButton: false,
+              });
+            }
+          });
+      }catch (err) {console.log(err.message)}
+
+      
+    // }
+    
   };
 
   return (
@@ -167,15 +212,6 @@ const AddRoom = () => {
             />
           </div>
           <div className="form-group">
-            <label>Quantity</label>
-            <input
-              type="number"
-              name="quantity"
-              className="form-control"
-              onChange={onChangeHandler}
-            />
-          </div>
-          <div className="form-group">
             <label>Image</label>
             <input
               type="file"
@@ -192,22 +228,24 @@ const AddRoom = () => {
             })}
           </div>
           <div className="form-group">
-            <label>Category</label>
-            <select
-              className="form-control mb-3"
-              name="categoryId"
+            <label>Max number</label>
+            <input
+              type="number"
+              name="maxNumber"
+              className="form-control"
               onChange={onChangeHandler}
-            >
-              <option disabled selected>
-                Select Category
-              </option>
-              {categories.map((category) => (
-                <option key={category._id} value={category._id}>
-                  {category.name}
-                </option>
-              ))}
-            </select>
-          </div>
+            />
+            </div>
+            <div className="form-group">
+
+            <label>Room Numbers</label>
+            <textarea
+                  onChange={(e) => setRoomNumbers(e.target.value)}
+                  placeholder="give comma between room numbers."
+                  name="roomNumbers"
+                />
+            </div>
+          
           <Button
             size="large"
             className="w-100"

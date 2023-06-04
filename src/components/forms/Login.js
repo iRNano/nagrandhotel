@@ -1,14 +1,17 @@
-import React, { useState } from "react"
+import React, { useState, useContext } from "react"
 import Swal from 'sweetalert2'
 import Heading from '../shared/Heading'
 import Button from '../shared/Button'
 import {URL} from '../../config'
+import { AuthContext } from "../../context/AuthContext"
 
 const Login = () => {
     const [formData,setFormData] = useState({
         email:"",
         password:"",
     })
+
+    const {dispatch} = useContext(AuthContext)
     
     const onSubmitHandler = (e) => {
         e.preventDefault()
@@ -21,7 +24,7 @@ const Login = () => {
             },
             
         }
-        fetch(`${URL}/users/login`, reqOptions)
+        fetch(`${URL}/auth/login`, reqOptions)
         .then(res =>  res.json())
         .then(data => {
             console.log('login', data)
@@ -33,6 +36,9 @@ const Login = () => {
                     timer: 1500,
                     showConfirmButton: false
                 }) // useContext
+                console.log(data)
+
+                dispatch({type: 'LOGIN_SUCCESS', payload: data})
                 // localStorage.setItem('user', JSON.stringify(data.details.user))
                 // localStorage.setItem('token', data.details.token)
                 // let cartItems = []
@@ -41,7 +47,7 @@ const Login = () => {
             }else{
                 Swal.fire({
                     icon: 'error',
-                    text: data.details.message,
+                    text: data.message,
                     timer: 1500,
                     showConfirmButton: false
                 })

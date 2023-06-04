@@ -10,7 +10,7 @@ const RoomItem = (props) => {
     <div className="col-lg-6 col-12 py-5">
         {console.log(props)}
       <div className="card w-100">
-        {/* <img className="img-fluid card-img-top" src={`${URL}${props.roominfo.images[0].path}`} alt="test"></img> */}
+        <img className="img-fluid card-img-top" src={`${props.roominfo.images[0]}`} alt="test"></img>
       </div>
       <div className="text-center p-2">
         <Heading.H1 location="rooms">{props.roominfo.name}</Heading.H1>

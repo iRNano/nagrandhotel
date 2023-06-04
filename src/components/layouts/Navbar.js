@@ -1,9 +1,10 @@
-import React, { useState, Fragment } from "react";
+import React, { useState, Fragment, useContext } from "react";
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
 import nagrand from "../../images/Nagrandcream.png";
 import * as T from '../../config/theme'
+import { AuthContext } from "../../context/AuthContext";
 
 const BrandImg = styled.img.attrs({
   src: nagrand,
@@ -81,10 +82,10 @@ const Hamburger = styled.div`
   }
 `;
 
-const TopNav = ({ user, token, logout, activeSection }) => {
+const TopNav = ({logout, activeSection }) => {
   const [collapsed, setCollapsed] = useState(false);
   const [bgColor, setBgColor] = useState(null)
-
+  const {user} = useContext(AuthContext)
   //links
   let menulinks = [
     {path: "/", name: "HOME"},
@@ -99,12 +100,14 @@ const TopNav = ({ user, token, logout, activeSection }) => {
     
     {path: "/", name: "LOGOUT" }
   ];
-
-    if(user) menulinks = [...menulinks.filter(obj => obj.name === "LOG IN"), ...logInnedLinks]
+  console.log(user)
+    if(user) menulinks = [...menulinks.filter(obj => obj.name !== "LOGIN"), ...logInnedLinks]
 
   useEffect(()=>{
     console.log('activeSection',activeSection)
   },[activeSection])
+
+  
   return (
     <StyledNav bgColor={activeSection}>
       <NavLink to="/" exact>
