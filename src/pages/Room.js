@@ -6,8 +6,8 @@ import { Link } from "react-router-dom";
 import EditRoom from "../components/forms/EditRoom";
 import Swal from "sweetalert2";
 import { URL } from "../config";
-import * as S from './style'
-import * as T from '../config/theme'
+import * as S from "./style";
+import * as T from "../config/theme";
 
 const Room = ({ user, token }) => {
   let { _id } = useParams();
@@ -37,13 +37,11 @@ const Room = ({ user, token }) => {
       if (result.value) {
         fetch(`${URL}/rooms/${roomId}`, {
           method: "DELETE",
-          headers: {
-            "x-auth-token": token,
-          },
+          credentials: "include",
         })
           .then((res) => res.json())
           .then((data) => {
-            if (data.status === 200) {
+            if (data) {
               Swal.fire("Deleted!", `${data.message}`, "success");
               window.location.href = "/catalog";
             }
@@ -54,7 +52,11 @@ const Room = ({ user, token }) => {
   return (
     <S.Wrapper bgColor={T.cream}>
       {loaded ? (
-        <S.Content fontFamily={T.montserratLight} fontSize={"2rem"} color={T.pine}>
+        <S.Content
+          fontFamily={T.montserratLight}
+          fontSize={"2rem"}
+          color={T.pine}
+        >
           {editing ? (
             <EditRoom room={room} setEditing={setEditing} />
           ) : (
@@ -68,10 +70,7 @@ const Room = ({ user, token }) => {
               <div className="row" style={{ margin: "auto" }}>
                 <div className="col-lg-6 col-12">
                   {room.images.length > 0 ? (
-                    <img
-                      className="img-fluid"
-                      src={room.images[0]}
-                    />
+                    <img className="img-fluid" src={room.images[0]} />
                   ) : null}
                 </div>
                 <div className="col-lg-6 col-12 p-5">
