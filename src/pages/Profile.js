@@ -1,11 +1,12 @@
 import React, { Fragment, useEffect } from "react";
-import { Tabs, Tab } from "react-bootstrap";
+// import { Tabs, Tab } from "react-bootstrap";
 import styled from "styled-components";
 import Login from "../components/forms/Login";
 import Register from "../components/forms/Register";
 import AccountDetail from "../components/forms/AccountDetail";
 import * as S from "./style";
 import * as T from "../config/theme";
+import { Container } from "../styles/Pages.styled";
 
 const ProfileWrapper = styled.div`
   display: flex;
@@ -41,22 +42,22 @@ const ProfileContent = styled.div`
 
 const Profile = () => {
   return (
-    <S.Wrapper minHeight={"60vh"} bgColor={T.pine} fontFamily={T.zcoolXiaoWei}>
+    <Container minHeight={"60vh"} bgColor={T.pine} fontFamily={T.zcoolXiaoWei}>
       {/* { ? (
         <AccountDetail  /> */}
       {/* ) : */}
       <S.Content bgColor={T.cream} color={T.pine} width={"30%"}>
-        <Tabs defaultActiveKey="login" id="uncontrolled-tab-example">
+        {/* <Tabs defaultActiveKey="login" id="uncontrolled-tab-example">
           <Tab eventKey="login" title="Login" style={{ width: "100%" }}>
             <Login />
           </Tab>
           <Tab eventKey="register" title="Register" style={{ width: "100%" }}>
             <Register />
           </Tab>
-        </Tabs>
+        </Tabs> */}
       </S.Content>
       {/* )} */}
-    </S.Wrapper>
+    </Container>
   );
 };
 

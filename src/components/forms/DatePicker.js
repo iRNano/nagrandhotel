@@ -17,9 +17,9 @@ const DatePicker = ({ dates, setDates }) => {
     const datesArray = [];
     const currentDate = new Date(startDate);
     const end = new Date(endDate);
-    console.log(currentDate.getTime());
+    // console.log(new Date(startDate));
     while (currentDate <= end) {
-      datesArray.push(new Date(currentDate.getTime()));
+      datesArray.push(new Date(currentDate).getTime());
       currentDate.setDate(currentDate.getDate() + 1);
     }
 

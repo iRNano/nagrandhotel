@@ -8,6 +8,7 @@ import Swal from "sweetalert2";
 import { URL } from "../config";
 import * as S from "./style";
 import * as T from "../config/theme";
+import { Container } from "../styles/Pages.styled";
 
 const Room = ({ user, token }) => {
   let { _id } = useParams();
@@ -50,7 +51,7 @@ const Room = ({ user, token }) => {
     });
   };
   return (
-    <S.Wrapper bgColor={T.cream}>
+    <Container bgColor={T.cream}>
       {loaded ? (
         <S.Content
           fontFamily={T.montserratLight}
@@ -118,7 +119,7 @@ const Room = ({ user, token }) => {
           )}
         </S.Content>
       ) : null}
-    </S.Wrapper>
+    </Container>
   );
 };
 

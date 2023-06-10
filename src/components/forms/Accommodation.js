@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import RoomList from "../RoomList";
 import { URL } from "../../config";
 import Button from "../shared/Button";
-const Accommodation = ({ dates, capacity }) => {
+const Accommodation = ({ dates, capacity, cartItems, setCartItems }) => {
   const [rooms, setRooms] = useState([]);
   //   const [capacity, setCapacity] = useState("3");
   //   const [dates, setDates] = useState([]);
@@ -11,7 +11,12 @@ const Accommodation = ({ dates, capacity }) => {
   useEffect(() => {
     //get rooms
 
-    console.log("dates", dates);
+    console.log(
+      "dates",
+      dates.dates.forEach((date) => {
+        console.log(new Date(date).toUTCString());
+      })
+    );
     console.log("capacity", capacity);
     fetch(`${URL}/rooms`)
       .then((res) => res.json())
@@ -27,10 +32,21 @@ const Accommodation = ({ dates, capacity }) => {
 
               roomNumbers.forEach(({ unavailableDates, number }) => {
                 if (
-                  !dates.dates.some((date) => unavailableDates.includes(date))
+                  //   !dates.dates.some((date) =>
+                  //     unavailableDates.includes()
+                  //   )
+                  !unavailableDates.some((date) =>
+                    dates.dates.includes(new Date(date).getTime())
+                  )
                 )
                   room.availableRooms.push(number);
 
+                console.log(
+                  unavailableDates.some((date) => {
+                    console.log(new Date(date).getTime());
+                    dates.dates.includes(new Date(date).getTime());
+                  })
+                );
                 //iterate through dates
 
                 //if any date in unavailableDates array set to false
@@ -47,7 +63,9 @@ const Accommodation = ({ dates, capacity }) => {
   useEffect(() => {
     if (rooms.length) setSelectedRoom(rooms[0]);
   }, [rooms]);
-  console.log(selectedRoom);
+
+  //   const bookingHandler
+  //   console.log(selectedRoom);
   return (
     <div style={{ display: "flex" }}>
       <div
@@ -58,22 +76,24 @@ const Accommodation = ({ dates, capacity }) => {
         {rooms.length ? (
           <RoomList
             setSelectedRoom={setSelectedRoom}
+            setCartItems={setCartItems}
+            cartItems={cartItems}
             booking={true}
             rooms={rooms}
           />
         ) : null}
       </div>
       <div className="details" style={{ flexGrow: 2 }}>
-        {selectedRoom?.name ? (
-          <div className="room-details">
-            <h1>{selectedRoom.name}</h1>
-            <h1>Capacity: {selectedRoom.maxNumber}</h1>
-            <h1>Price: {selectedRoom.price}</h1>
-            <h1>Available Rooms: {selectedRoom.availableRooms.length}</h1>
-
-            <Button>Book</Button>
-          </div>
-        ) : null}
+        {cartItems.length
+          ? cartItems.map((item) => {
+              return (
+                <div key={item._id}>
+                  <h3>{item.name}</h3>
+                  <p>{item.description}</p>
+                </div>
+              );
+            })
+          : null}
       </div>
     </div>
   );

@@ -1,9 +1,10 @@
 import React, { useState, Fragment, useEffect } from "react";
 import "react-dates/initialize";
-import momentPropTypes from 'react-moment-proptypes';
-import moment from 'moment';
+import momentPropTypes from "react-moment-proptypes";
+import moment from "moment";
 import Button from "../components/shared/Button";
 import styled from "styled-components";
+import { Container } from "../styles/Pages.styled";
 import {
   DateRangePicker,
   SingleDatePicker,
@@ -18,8 +19,8 @@ import DatePicker from "../components/forms/DatePicker";
 import Accommodation from "../components/forms/Accommodation";
 import Checkout from "../components/forms/Checkout";
 import { URL } from "../config";
-import * as S from './style'
-import * as T from '../config/theme'
+import * as S from "./style";
+import * as T from "../config/theme";
 import BookingTabWdiget from "../components/layouts/BookingTabWidget";
 
 const CatalogContainer = styled.div`
@@ -37,10 +38,10 @@ const Booking = ({ user, token }) => {
   const [bookings, setBookings] = useState([]);
   const [booking, setBooking] = useState(false);
   const [nights, setNights] = useState(0);
-  const [startDate, setStartDate] = useState(null)
-  const [endDate, setEndDate] = useState(null)
-  const [focusedInput, setFocusedInput] = useState('startDate')
-  const [activeTab, setActiveTab] = useState(0)
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
+  const [focusedInput, setFocusedInput] = useState("startDate");
+  const [activeTab, setActiveTab] = useState(0);
 
   const [checkout, setCheckout] = useState(false);
 
@@ -135,10 +136,10 @@ const Booking = ({ user, token }) => {
   };
 
   const changedDateHandler = (start, end) => {
-    console.log('change', start + end)
-    setStartDate(start)
-    setEndDate(end)
-  }
+    console.log("change", start + end);
+    setStartDate(start);
+    setEndDate(end);
+  };
   //Show available rooms
   const showAvailableRooms = availableRooms.map((room) => {
     if (room.quantity > 0) {
@@ -189,24 +190,32 @@ const Booking = ({ user, token }) => {
   });
 
   return (
-    <S.Wrapper bgColor={T.pine}>
-      <S.Content fontFamily={T.montserratLight} bgColor={T.cream} color={T.pine} fontSize={"2rem"}>
-
+    <Container bgColor={T.pine}>
+      <S.Content
+        fontFamily={T.montserratLight}
+        bgColor={T.cream}
+        color={T.pine}
+        fontSize={"2rem"}
+      >
         <Heading.H1 location="checkout" className="text-center py-3">
           Booking
         </Heading.H1>
         <hr />
         <Fragment>
-
-          <BookingNavbar setActiveTab={setActiveTab}/>
+          <BookingNavbar setActiveTab={setActiveTab} />
           <BookingTabWdiget
-           activeTab={activeTab}
-           drpProps={{startDate, endDate, focusedInput, setFocusedInput, changedDateHandler}}
-
-           />
+            activeTab={activeTab}
+            drpProps={{
+              startDate,
+              endDate,
+              focusedInput,
+              setFocusedInput,
+              changedDateHandler,
+            }}
+          />
           {/* <div style={{ display: "flex" }} className="row pb-2"> */}
-          
-            {/* <div className="col-lg-4 col-12">
+
+          {/* <div className="col-lg-4 col-12">
          <input
            className="w-100"
            type="date"
@@ -254,7 +263,7 @@ const Booking = ({ user, token }) => {
      ) : null} */}
         </Fragment>
       </S.Content>
-    </S.Wrapper>
+    </Container>
   );
 };
 export default Booking;

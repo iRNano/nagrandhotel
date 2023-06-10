@@ -5,54 +5,42 @@ import jwt_decode from "jwt-decode";
 import Navbar from "./components/layouts/Navbar";
 import Navbar2 from "./components/layouts/Navbar2";
 import Footer from "./components/layouts/Footer";
-import Landing from "./pages/Landing/index";
-import AboutUs from "./pages/AboutUs";
-import Contact from "./pages/Contact";
-import Room from "./pages/Room";
-//forms
-import Login from "./components/forms/Login";
-import Register from "./components/forms/Register";
-import AddRoom from "./components/forms/AddRoom";
-import Catalog from "./pages/Catalog";
-import Booking from "./pages/Booking";
-import Booking2 from "./pages/Booking2";
-import Profile from "./pages/Profile";
+
 // import EditRoom from './components/forms/EditRoom'
 import "./App.css";
 import { ThemeProvider } from "styled-components";
+import { GlobalStyles } from "./styles/Global";
 import * as theme from "./config/theme";
-import Checkout from "./components/forms/Checkout";
-import Transactions from "./pages/Transactions";
-import Confirmation from "./components/Confirmation";
 import ScrollToTop from "./ScrollToTop";
 import { AuthContextProvider } from "./context/AuthContext";
+import RouteHandler from "./RouteHandler";
 
 const App = () => {
-  const [user, setUser] = useState({});
-  const [token, setToken] = useState("");
+  // const [user, setUser] = useState({});
+  // const [token, setToken] = useState("");
   const [activeSection, setActiveSection] = useState("");
 
-  useEffect(() => {
-    if (token) {
-      let decoded = jwt_decode(token);
-      let now = new Date();
+  // useEffect(() => {
+  //   if (token) {
+  //     let decoded = jwt_decode(token);
+  //     let now = new Date();
 
-      if (decoded.exp >= now.getTime()) {
-        localStorage.clear();
-      }
-    }
-    if (user) {
-      setUser(JSON.parse(localStorage.getItem("user")));
-      setToken(localStorage.getItem("token"));
-    }
-  }, [token]);
+  //     if (decoded.exp >= now.getTime()) {
+  //       localStorage.clear();
+  //     }
+  //   }
+  //   if (user) {
+  //     setUser(JSON.parse(localStorage.getItem("user")));
+  //     setToken(localStorage.getItem("token"));
+  //   }
+  // }, [token]);
 
   //logout
   const logout = () => {
     console.log("loguout");
     localStorage.clear();
-    setUser({});
-    setToken("");
+    // setUser({});
+    // setToken("");
     window.location.href = "/";
   };
 
@@ -60,59 +48,20 @@ const App = () => {
     <div className="App">
       <AuthContextProvider>
         <ThemeProvider theme={theme}>
+          <GlobalStyles />
           <Router>
             <ScrollToTop />
             <Navbar
               // user={user}
               // token={token}
-              // logout={logout}
+              logout={logout}
               activeSection={activeSection}
             />
-            <Switch>
-              <Route exact path="/">
-                <Landing setActiveSection={setActiveSection} />
-              </Route>
-              <Route path="/about-us">
-                <AboutUs />
-              </Route>
-              <Route path="/contact">
-                <Contact />
-              </Route>
-              <Route path="/register">
-                <Register />
-              </Route>
-              <Route path="/login">
-                <Login />
-              </Route>
-              <Route path="/add-room">
-                <AddRoom />
-              </Route>
-              <Route path="/catalog">
-                <Catalog />
-              </Route>
-              <Route path="/booking">
-                {/* <Booking user={user} token={token} /> */}
-                <Booking2 />
-              </Route>
-              <Route path="/rooms/:_id">
-                <Room user={user} token={token} />
-              </Route>
-              <Route path="/checkout">
-                <Checkout />
-              </Route>
-              <Route path="/profile">
-                <Profile user={user} />
-              </Route>
-              <Route path="/transactions">
-                <Transactions />
-              </Route>
-              <Route path="/confirmation">
-                <Confirmation user={user} token={token} />
-              </Route>
-            </Switch>
+            <RouteHandler setActiveSection={setActiveSection} />
 
             <Footer />
           </Router>
+          {/* </GlobalStyle> */}
         </ThemeProvider>
       </AuthContextProvider>
     </div>

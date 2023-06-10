@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext} from "react";
+import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
 import Heading from "../components/shared/Heading";
 import { Link } from "react-router-dom";
@@ -7,6 +7,7 @@ import { URL } from "../config";
 import axios from "axios";
 import RoomList from "../components/RoomList";
 import { AuthContext } from "../context/AuthContext";
+import { Container } from "../styles/Pages.styled";
 
 const RoomWrapper = styled.div`
   background-color: ${(props) => props.theme.cream};
@@ -32,7 +33,7 @@ const RoomContent = styled.div`
 
 const Catalog = () => {
   const [rooms, setRooms] = useState([]);
-  const {user} = useContext(AuthContext)
+  const { user } = useContext(AuthContext);
   useEffect(() => {
     const rooms = async () => {
       const { data } = await axios.get(`${URL}/rooms`);
@@ -40,7 +41,6 @@ const Catalog = () => {
     };
 
     rooms();
-
   }, []);
 
   return (
@@ -66,7 +66,7 @@ const Catalog = () => {
             </Link>
           </div>
         ) : null}
-        <RoomList  rooms={rooms}/>
+        <RoomList rooms={rooms} />
         {/* <div className="row px-0 w-100 py-5 m-0">{showRooms}</div> */}
       </RoomContent>
     </RoomWrapper>

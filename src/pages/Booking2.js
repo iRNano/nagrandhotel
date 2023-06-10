@@ -3,11 +3,14 @@ import styled from "styled-components";
 import Accommodation from "../components/forms/Accommodation";
 import Capacity from "../components/forms/Capacity";
 import DatePicker from "../components/forms/DatePicker";
+import Confirmation from "../components/Confirmation";
+// import { Container } from "../styles/Pages.styled";
 
 const Booking2 = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [dates, setDates] = useState({});
   const [capacity, setCapacity] = useState(0);
+  const [cartItems, setCartItems] = useState([]);
 
   const handleTabClick = (step) => {
     setCurrentStep(step);
@@ -20,9 +23,16 @@ const Booking2 = () => {
       case 1:
         return <DatePicker dates={dates} setDates={setDates} />;
       case 2:
-        return <Accommodation dates={dates} capacity={capacity} />;
+        return (
+          <Accommodation
+            dates={dates}
+            capacity={capacity}
+            cartItems={cartItems}
+            setCartItems={setCartItems}
+          />
+        );
       case 3:
-        return <Step4 />;
+        return <Confirmation />;
       default:
         return null;
     }
