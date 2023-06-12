@@ -22,6 +22,8 @@ const LandingPageContent = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   height: 100%;
+  min-height: calc(100vh - 8em);
+  min-height: calc(100svh - 8em);
   font-family: ${(props) => props.theme.zcoolXiaoWei};
   @media (max-width: 768px) {
     width: 100%;
@@ -55,8 +57,15 @@ const FloatingText = styled.div`
   }
   button {
     margin-top: 10%;
+    border: 1px solid transparent;
+  }
+
+  button:hover {
+    color: white;
+    border: 1px solid white;
   }
 `;
+
 const AboutUs = styled.div`
   display: flex;
   flex-flow: row nowrap;
@@ -71,15 +80,6 @@ const AboutUs = styled.div`
 `;
 
 const AboutUsContent = styled.div`
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  width: 75%;
-  margin: 0 auto;
-
-  height: auto;
-  display: block;
-  justify-content: center;
   color: ${(props) => props.theme.pine};
   @media all and (min-width: 1200px) max-width: 1920px;
   //xs
@@ -88,6 +88,28 @@ const AboutUsContent = styled.div`
   }
 `;
 
+const AboutUsDetails = styled.div`
+  text-align: center;
+  margin-bottom: 4em;
+
+  div,
+  p {
+    margin-bottom: 1em;
+  }
+`;
+
+const AboutUsRooms = styled.div`
+  padding: 2em;
+
+  & > *,
+  ul > li {
+    margin-bottom: 16px;
+  }
+
+  li {
+    text-decoration: underline;
+  }
+`;
 const SpecialOffer = styled.div`
   display: block;
   flex-flow: row nowrap;
@@ -115,6 +137,8 @@ export {
   FloatingText,
   AboutUs,
   AboutUsContent,
+  AboutUsDetails,
+  AboutUsRooms,
   SpecialOffer,
   SpecialOfferContent,
 };

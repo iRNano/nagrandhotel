@@ -10,13 +10,13 @@ export const GlobalStyles = createGlobalStyle`
   box-sizing: border-box;
 }
 
-html {
+body,html {
   font-size: 100%;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  margin: 0;
-  padding: 0;
   overflow-x: hidden;
   min-height: 100vh;
   text-rendering: optimizeSpeed;

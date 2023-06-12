@@ -5,7 +5,7 @@ export const BrandImg = styled.img.attrs({
 })`
   max-width: 150px;
   color: red;
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     max-width: 80px;
   }
 `;
@@ -21,8 +21,9 @@ export const StyledNav = styled.div`
   justify-content: space-between;
   flex-wrap: wrap;
   align-items: center;
+  max-width: 100vw;
 
-  @media (max-width: 768px) {
+  @media (max-width: 767px) {
     padding: 2em;
   }
 `;

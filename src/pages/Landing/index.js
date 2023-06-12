@@ -10,6 +10,7 @@ import Heading from "../../components/shared/Heading";
 import palmTree from "../../images/palmtree.png";
 import { URL } from "../../config";
 import { useInView, InView } from "react-intersection-observer";
+import { FlexDiv } from "../../styles/Flex.styled";
 
 const MainContent = ({ setActiveSection }) => {
   const [rooms, setRooms] = useState([]);
@@ -82,63 +83,66 @@ const MainContent = ({ setActiveSection }) => {
   }, []);
 
   const displayedRoomHandler = (room) => {
-    setDisplayedRoom(`${URL}/${room.images[0].path}`);
+    setDisplayedRoom(`${room.images[0]}`);
   };
 
   return (
     <Fragment>
-      <InView
-        as="div"
-        // onChange={(inview, entry) =>
-        //   // console.log(`Inview: ${inview}, entry: ${entry?.target}`)
-        // }
-      >
-        <div className="home-page" ref={homeRef}>
-          <Container ref={(el) => (sectionRefs.current[0] = el)} id="landing">
-            <Content>
-              <div
+      <div className="home-page" ref={homeRef} style={{ width: "100%" }}>
+        <Container ref={(el) => (sectionRefs.current[0] = el)} id="landing">
+          <Content>
+            <S.LandingPageContent>
+              <S.FloatingText>
+                <S.LandingHeading>Find</S.LandingHeading>
+                <S.LandingHeading>Yourself</S.LandingHeading>
+                <S.LandingHeading>Here</S.LandingHeading>
+                <Link to="/booking">
+                  <Button location="landing" size="large" type="button">
+                    BOOK NOW
+                  </Button>
+                </Link>
+              </S.FloatingText>
+            </S.LandingPageContent>
+            {/* <div
                 style={{
                   position: "relative",
                   aspectRatio: "3/2",
-                  maxWidth: "70%",
+                  maxWidth: "100%",
                   margin: "0 auto",
                 }}
               >
-                <img src={landingPageImage}></img>
-                <S.FloatingText>
-                  <S.LandingHeading>Find</S.LandingHeading>
-                  <S.LandingHeading>Yourself</S.LandingHeading>
-                  <S.LandingHeading>Here</S.LandingHeading>
-                  <Link to="/booking">
-                    <Button location="landing" size="large" type="button">
-                      BOOK NOW
-                    </Button>
-                  </Link>
-                </S.FloatingText>
-              </div>
-            </Content>
-          </Container>
-          <Container ref={(el) => (sectionRefs.current[1] = el)} id="about">
-            <Content>
-              <div>
+                <img
+                  src={landingPageImage}
+                  style={{ maxWidth: "80%", margin: "0 auto" }}
+                ></img>
+              </div> */}
+          </Content>
+        </Container>
+        <Container
+          bgColor={"cream"}
+          ref={(el) => (sectionRefs.current[1] = el)}
+          id="about"
+        >
+          <Content>
+            <S.AboutUsContent>
+              <S.AboutUsDetails>
+                <img src={palmTree} style={{ margin: "0 auto" }} />
+                <p>
+                  The Nagrand Resort & Spa is an ode to discovery, a love letter
+                  to life in the heart of Cebu.
+                </p>
+                <Link to="/about-us">
+                  <Button location="aboutus" size="large" type="button">
+                    READ MORE
+                  </Button>
+                </Link>
+              </S.AboutUsDetails>
+
+              <FlexDiv>
                 <div>
-                  <img src={palmTree} />
-                  <p>
-                    The Nagrand Resort & Spa is an ode to discovery, a love
-                    letter to life in the heart of Cebu.
-                  </p>
-                  <Link to="/about-us">
-                    <Button location="aboutus" size="large" type="button">
-                      READ MORE
-                    </Button>
-                  </Link>
+                  <img src={displayedRoom} alt="room" />
                 </div>
-              </div>
-              <div>
-                <div>
-                  <img src={displayedRoom} />
-                </div>
-                <div>
+                <S.AboutUsRooms>
                   <h1>Rooms</h1>
                   <h1>Stay with Us</h1>
                   <h5>A sanctuary set against Mactan's historic downtown</h5>
@@ -146,7 +150,9 @@ const MainContent = ({ setActiveSection }) => {
                   <ul>
                     {rooms.map((room) => (
                       <Fragment key={room._id}>
-                        <div>{room.name}</div>
+                        <li onClick={() => displayedRoomHandler(room)}>
+                          {room.name}
+                        </li>
                       </Fragment>
                     ))}
                   </ul>
@@ -156,26 +162,26 @@ const MainContent = ({ setActiveSection }) => {
                       VIEW ALL SUITES
                     </Button>
                   </Link>
-                </div>
-              </div>
-            </Content>
-          </Container>
-          <Container ref={(el) => (sectionRefs.current[2] = el)} id="special">
+                </S.AboutUsRooms>
+              </FlexDiv>
+            </S.AboutUsContent>
+          </Content>
+        </Container>
+        <Container ref={(el) => (sectionRefs.current[2] = el)} id="special">
+          <div>
+            <div>
+              <img src={`${beach}`} className="img-fluid"></img>
+            </div>
             <div>
               <div>
-                <img src={`${beach}`} className="img-fluid"></img>
-              </div>
-              <div>
-                <div>
-                  <Heading.H1 location="profile">
-                    Sign up for Special offers and promotions
-                  </Heading.H1>
-                </div>
+                <Heading.H1 location="profile">
+                  Sign up for Special offers and promotions
+                </Heading.H1>
               </div>
             </div>
-          </Container>
-        </div>
-      </InView>
+          </div>
+        </Container>
+      </div>
     </Fragment>
   );
 };
