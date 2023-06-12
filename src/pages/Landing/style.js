@@ -1,14 +1,14 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 import landingPageImage from "../../images/home2189.png";
 import landingPageImageMobile from "../../images/home1095.png";
 import arenaSuite from "../../images/arenasuite1166.png";
 
 const LandingPage = styled.div`
-  
   display: flex;
   position: relative;
   min-height: 100vh;
   background-color: ${(props) => props.theme.pine};
+
   //xs
   // @media all and (max-width: 767px) {
   //   padding: 1em;
@@ -16,20 +16,14 @@ const LandingPage = styled.div`
 `;
 
 const LandingPageContent = styled.div`
-  
-  
   position: relative;
-  margin: 13em auto 10em auto;
-  width: 70%;
-  background:url(${landingPageImage});
-  background-size:contain;
+  background: url(${landingPageImage});
+  background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  
-  
+  height: 100%;
   font-family: ${(props) => props.theme.zcoolXiaoWei};
-  @media (max-width: 768px){
-    margin: 0 0 10em 0;
+  @media (max-width: 768px) {
     width: 100%;
     background-size: cover;
   }
@@ -40,30 +34,28 @@ const LandingHeading = styled.h2`
   color: white;
   line-height: clamp(1rem, 1rem + 10vw, 2.5rem);
 
-  @media (min-width: 993px){
+  @media (min-width: 993px) {
     font-size: clamp(3rem, 1rem + 10vw, 7rem);
     line-height: clamp(3rem, 1rem + 10vw, 5rem);
   }
 `;
 
 const FloatingText = styled.div`
-    position: absolute;
-    transform: translate(10%, 250%);
-    margin: 0 auto;
+  position: absolute;
+  transform: translate(10%, 250%);
+  margin: 0 auto;
 
-    @media (min-width: 769px){
-      transform: translate(-20%, 150%);
-    }
+  @media (min-width: 769px) {
+    transform: translate(-20%, 150%);
+  }
 
-    @media (min-width: 993px){
-      transform: translate(32%, 50%);
+  @media (min-width: 993px) {
+    transform: translate(32%, 50%);
     margin: 0 auto;
-    }
-    button{
-      margin-top: 10%;
-      
-    }
-    
+  }
+  button {
+    margin-top: 10%;
+  }
 `;
 const AboutUs = styled.div`
   display: flex;
@@ -116,4 +108,13 @@ const SpecialOfferContent = styled.div`
   color: ${(props) => props.theme.pine};
 `;
 
-export { LandingPage, LandingPageContent,  LandingHeading, FloatingText, AboutUs, AboutUsContent, SpecialOffer, SpecialOfferContent}
+export {
+  LandingPage,
+  LandingPageContent,
+  LandingHeading,
+  FloatingText,
+  AboutUs,
+  AboutUsContent,
+  SpecialOffer,
+  SpecialOfferContent,
+};

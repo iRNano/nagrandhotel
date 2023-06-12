@@ -1,8 +1,9 @@
 import React, { Fragment, useEffect, useState, useRef, useMemo } from "react";
 import { Link } from "react-router-dom";
+import { Container, Content } from "../../styles/Pages.styled";
 import * as S from "./style";
-import * as T from "../../config/theme";
 //shared styled components
+import landingPageImage from "../../images/home2189.png";
 import Button from "../../components/shared/Button";
 import beach from "../../images/beach1919.png";
 import Heading from "../../components/shared/Heading";
@@ -14,9 +15,7 @@ const MainContent = ({ setActiveSection }) => {
   const [rooms, setRooms] = useState([]);
   const [displayedRoom, setDisplayedRoom] = useState();
   // const [threshold, setThreshold] = useState(0.9);
-  const landingRef = useRef(null);
-  const aboutRef = useRef(null);
-  const specialRef = useRef(null);
+
   const homeRef = useRef(null);
   const prevScrollY = useRef(0);
   const threshold = useRef(0.6);
@@ -40,20 +39,9 @@ const MainContent = ({ setActiveSection }) => {
         // Scrolling up
         threshold.current = 0.1; // Higher threshold for slower color change
       }
-      console.log("threshold", threshold.current);
+      // console.log("threshold", threshold.current);
       prevScrollY.current = currentScrollY;
     };
-    // const observerHandler = (entries) => {
-    //   const [entry] = entries;
-    //   let color;
-    //   // console.log(entry.target);
-    //   console.log("name", entry.target.id);
-    //   if (entry.target.id === "landing" || entry.target.id === "special")
-    //     color = T.pine;
-    //   if (entry.target.id === "about") color = T.cream;
-
-    //   if (entry.isIntersecting) setActiveSection(color);
-    // };
 
     const observerHandler = (entries, observer) => {
       // const [entry] = entries;
@@ -63,9 +51,9 @@ const MainContent = ({ setActiveSection }) => {
         // console.log(entry.target);
         console.log("name", entry.target.id);
 
-        if (entry.target.id === "landing" || entry.target.id === "special")
-          color = T.pine;
-        if (entry.target.id === "about") color = T.cream;
+        // if (entry.target.id === "landing" || entry.target.id === "special")
+        //   color = T.pine;
+        // if (entry.target.id === "about") color = T.cream;
 
         if (entry.isIntersecting) setActiveSection(color);
       });
@@ -77,11 +65,7 @@ const MainContent = ({ setActiveSection }) => {
       // trackVisibility: threshold.current,
       delay: 100,
     };
-    // const landingObs = new IntersectionObserver(observerHandler, options);
-    // const aboutObs = new IntersectionObserver(observerHandler, {
-    //   ...options,
-    // });
-    // const specialObs = new IntersectionObserver(observerHandler, options);
+
     const observer = new IntersectionObserver(observerHandler, options);
     console.log(sectionRefs.current);
     sectionRefs.current.forEach((ref) => {
@@ -90,16 +74,8 @@ const MainContent = ({ setActiveSection }) => {
       }
     });
 
-    // landingObs.observe(landingRef.current);
-    // aboutObs.observe(aboutRef.current);
-    // specialObs.observe(specialRef.current);
-    // observer.observe(homeRef.current);
-
-    window.addEventListener("scroll", handleScroll);
+    // window.addEventListener("scroll", handleScroll);
     return () => {
-      // landingObs.disconnect();
-      // aboutObs.disconnect();
-      // specialObs.disconnect();
       observer.disconnect();
       window.removeEventListener("scroll", handleScroll);
     };
@@ -118,27 +94,34 @@ const MainContent = ({ setActiveSection }) => {
         // }
       >
         <div className="home-page" ref={homeRef}>
-          <S.LandingPage
-            ref={(el) => (sectionRefs.current[0] = el)}
-            id="landing"
-          >
-            <S.LandingPageContent>
-              <S.FloatingText>
-                <S.LandingHeading>Find</S.LandingHeading>
-                <S.LandingHeading>Yourself</S.LandingHeading>
-                <S.LandingHeading>Here</S.LandingHeading>
-                <Link to="/booking">
-                  <Button location="landing" size="large" type="button">
-                    BOOK NOW
-                  </Button>
-                </Link>
-              </S.FloatingText>
-            </S.LandingPageContent>
-          </S.LandingPage>
-          <S.AboutUs ref={(el) => (sectionRefs.current[1] = el)} id="about">
-            <S.AboutUsContent>
-              <div className="row py-5" style={{ margin: "auto" }}>
-                <div className="col-12 text-center ">
+          <Container ref={(el) => (sectionRefs.current[0] = el)} id="landing">
+            <Content>
+              <div
+                style={{
+                  position: "relative",
+                  aspectRatio: "3/2",
+                  maxWidth: "70%",
+                  margin: "0 auto",
+                }}
+              >
+                <img src={landingPageImage}></img>
+                <S.FloatingText>
+                  <S.LandingHeading>Find</S.LandingHeading>
+                  <S.LandingHeading>Yourself</S.LandingHeading>
+                  <S.LandingHeading>Here</S.LandingHeading>
+                  <Link to="/booking">
+                    <Button location="landing" size="large" type="button">
+                      BOOK NOW
+                    </Button>
+                  </Link>
+                </S.FloatingText>
+              </div>
+            </Content>
+          </Container>
+          <Container ref={(el) => (sectionRefs.current[1] = el)} id="about">
+            <Content>
+              <div>
+                <div>
                   <img src={palmTree} />
                   <p>
                     The Nagrand Resort & Spa is an ode to discovery, a love
@@ -151,11 +134,11 @@ const MainContent = ({ setActiveSection }) => {
                   </Link>
                 </div>
               </div>
-              <div className="row py-5" style={{ margin: "auto" }}>
-                <div className="col-lg-6 col-12 ">
-                  <img src={displayedRoom} className="img-fluid" />
+              <div>
+                <div>
+                  <img src={displayedRoom} />
                 </div>
-                <div className="col-lg-6 col-12 ">
+                <div>
                   <h1>Rooms</h1>
                   <h1>Stay with Us</h1>
                   <h5>A sanctuary set against Mactan's historic downtown</h5>
@@ -175,27 +158,22 @@ const MainContent = ({ setActiveSection }) => {
                   </Link>
                 </div>
               </div>
-            </S.AboutUsContent>
-          </S.AboutUs>
-          <S.SpecialOffer
-            ref={(el) => (sectionRefs.current[2] = el)}
-            id="special"
-          >
-            <S.SpecialOfferContent>
-              <div className="row text-center" style={{ margin: "auto" }}>
-                <div className="col-12 px-0 justify-content">
-                  <img src={`${beach}`} className="img-fluid"></img>
-                </div>
-                <div className="row text-center" style={{ margin: "auto" }}>
-                  <div className="col-12 px-0 py-5">
-                    <Heading.H1 location="profile">
-                      Sign up for Special offers and promotions
-                    </Heading.H1>
-                  </div>
+            </Content>
+          </Container>
+          <Container ref={(el) => (sectionRefs.current[2] = el)} id="special">
+            <div>
+              <div>
+                <img src={`${beach}`} className="img-fluid"></img>
+              </div>
+              <div>
+                <div>
+                  <Heading.H1 location="profile">
+                    Sign up for Special offers and promotions
+                  </Heading.H1>
                 </div>
               </div>
-            </S.SpecialOfferContent>
-          </S.SpecialOffer>
+            </div>
+          </Container>
         </div>
       </InView>
     </Fragment>

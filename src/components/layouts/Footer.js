@@ -2,12 +2,10 @@ import React from "react";
 import nagrand from "../../images/Nagrandcream.png";
 import styled from "styled-components";
 import { Link, NavItem } from "react-router-dom";
-
+import { FlexDiv } from "../../styles/Flex.styled";
+import { Content } from "../../styles/Pages.styled";
 const FooterStyle = styled.div`
   background-color: ${(props) => props.theme.pine};
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
 `;
 
 const FooterContent = styled.div`
@@ -43,9 +41,9 @@ const BrandImg = styled.img.attrs({
 const Footer = () => {
   return (
     <FooterStyle>
-      <FooterContent>
-        <div className="row " style={{ margin: "0 auto" }}>
-          <div className="col-lg-3 col-12 py-2">
+      <Content>
+        <FlexDiv>
+          <div>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <BrandImg></BrandImg>
             </div>
@@ -74,8 +72,9 @@ const Footer = () => {
             <p>M. +6332 413 7876</p>
             <p>F. +6332 441 5421</p>
           </div>
-        </div>
-        <div className="row text-center py-5" style={{ margin: "auto" }}>
+        </FlexDiv>
+
+        <FlexDiv>
           <div className="col-lg-6 col-12">
             <small>
               Copyright 2020 All rights reserved | Adrian Valdepenas
@@ -84,8 +83,8 @@ const Footer = () => {
           <div className="col-lg-6 col-12 align">
             <small>www.avaldepenas.com</small>
           </div>
-        </div>
-      </FooterContent>
+        </FlexDiv>
+      </Content>
     </FooterStyle>
   );
 };
