@@ -27,16 +27,27 @@ const TopNav = ({ logout, activeSection }) => {
   const [isDark, setIsDark] = useState(false);
   const { user } = useContext(AuthContext);
   const [menulinks, setMenulinks] = useState([]);
+  const [showBackground, setSowBackground] = useState(false);
   //links
 
   // console.log(user);
 
   useEffect(() => {
+    const handleScroll = () => {
+      const scrollTop = window.pageYOffset;
+      setSowBackground(scrollTop !== 0);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
     // console.log("activeSection", activeSection);
     // if (isColorDark(activeSection)) setIsDark(true);
-    if (activeSection === "#4D5C58") setColor("#F3EDEA");
-    if (activeSection === "#F3EDEA") setColor("#4D5C58");
-  }, [activeSection]);
+    // if (activeSection === "#4D5C58") setColor("#F3EDEA");
+    // if (activeSection === "#F3EDEA") setColor("#4D5C58");
+  }, []);
 
   useEffect(() => {
     let logInnedLinks = [
@@ -65,7 +76,7 @@ const TopNav = ({ logout, activeSection }) => {
   }, [user]);
 
   return (
-    <StyledNav>
+    <StyledNav showBackground={showBackground}>
       <NavLink to="/" exact>
         <BrandImg></BrandImg>
       </NavLink>

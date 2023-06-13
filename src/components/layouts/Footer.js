@@ -1,43 +1,9 @@
 import React from "react";
-import nagrand from "../../images/Nagrandcream.png";
-import styled from "styled-components";
 import { Link, NavItem } from "react-router-dom";
 import { FlexDiv } from "../../styles/Flex.styled";
 import { Content } from "../../styles/Pages.styled";
-const FooterStyle = styled.div`
-  background-color: ${(props) => props.theme.pine};
-`;
+import { BrandImg, FooterLinks, FooterStyle } from "../../styles/Footer.styled";
 
-const FooterContent = styled.div`
-  width: 70%;
-  margin: 0 auto;
-  padding-top: 5%;
-  color: ${(props) => props.theme.cream};
-  //xs
-
-  .align {
-    text-align: right;
-  }
-  @media all and (max-width: 767px) {
-    width: 100%;
-    font-size: 0.7rem;
-
-    .align {
-      text-align: center;
-    }
-  }
-`;
-
-const FooterLinks = styled.p`
-  color: ${(props) => props.theme.cream};
-`;
-
-const BrandImg = styled.img.attrs({
-  src: nagrand,
-})`
-  max-width: 200px;
-  height: auto;
-`;
 const Footer = () => {
   return (
     <FooterStyle>
@@ -48,12 +14,12 @@ const Footer = () => {
               <BrandImg></BrandImg>
             </div>
           </div>
-          <div className="col-lg-3 col-12 py-2 text-center">
+          <div>
             <p>The Nagrand Resort & Spa</p>
             <p>Buyong, Maribago Mactan Island,</p>
             <p>Lapu-Lapu City, 6015, Philippines</p>
           </div>
-          <div className="col-lg-4 col-12 py-2 text-center">
+          <div>
             <Link as={Link} to="/about-us">
               <FooterLinks>About Us</FooterLinks>
             </Link>
@@ -66,7 +32,7 @@ const Footer = () => {
               <FooterLinks>Rooms</FooterLinks>
             </Link>
           </div>
-          <div className="col-lg-2 col-12 py-2 text-center">
+          <div>
             <p>Reservations</p>
             <p>T. +6332 402 1435</p>
             <p>M. +6332 413 7876</p>
@@ -75,12 +41,12 @@ const Footer = () => {
         </FlexDiv>
 
         <FlexDiv>
-          <div className="col-lg-6 col-12">
+          <div>
             <small>
               Copyright 2020 All rights reserved | Adrian Valdepenas
             </small>
           </div>
-          <div className="col-lg-6 col-12 align">
+          <div>
             <small>www.avaldepenas.com</small>
           </div>
         </FlexDiv>

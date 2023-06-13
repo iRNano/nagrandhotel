@@ -15,7 +15,8 @@ export const StyledNav = styled.div`
   top: 0;
   padding: 2em;
   width: 100%;
-  background-color: ${({ theme }) => theme.colors.pine};
+  background-color: ${({ showBackground, theme }) =>
+    showBackground ? theme.colors.pine : "transparent"};
   z-index: 999;
   display: flex;
   justify-content: space-between;

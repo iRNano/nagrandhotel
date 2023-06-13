@@ -1,14 +1,12 @@
 import styled, { css } from "styled-components";
 
 const Container = styled.div`
-  padding: 2em;
   min-height: ${(props) => (props.minHeight ? props.minHeight : "100vh")};
   background-color: ${(props) => props.theme.colors[props.bgColor]};
   font-family: ${(props) => props.fontFamily};
   width: 100%;
   //xs
   @media all and (max-width: 767px) {
-    padding: 0em;
     width: 100%;
   }
 `;

@@ -8,4 +8,8 @@ export const FlexDiv = styled.div`
   & > ul {
     flex: 1;
   }
+
+  @media (max-width: 767px) {
+    flex-direction: column;
+  }
 `;
