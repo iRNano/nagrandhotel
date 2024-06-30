@@ -1,0 +1,17 @@
+[
+        {
+        "_id": "123abc",
+        "name": "room name",
+        "description": "description"
+        },
+        {
+        "_id": "zvc",
+        "name": "room name",
+        "description": "description"
+    },
+        {
+        "_id": "cbx",
+        "name": "room name",
+        "description": "description"
+    }
+]

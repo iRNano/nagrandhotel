@@ -4,6 +4,13 @@ import Heading from "./shared/Heading";
 import { URL } from "../config";
 import Button from "./shared/Button";
 
+// interface RoomItem {
+//   setSelectRoom: () => {},
+//   setCartItems: () => {},
+//   cartItems: [],
+  
+
+// }
 const RoomItem = ({
   setSelectedRoom,
   booking,

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, NavItem } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { FlexDiv } from "../../styles/Flex.styled";
 import { Content } from "../../styles/Pages.styled";
 import { BrandImg, FooterLinks, FooterStyle } from "../../styles/Footer.styled";

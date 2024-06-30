@@ -23,13 +23,26 @@ const MainContent = ({ setActiveSection }) => {
   const sectionRefs = useRef([]);
 
   useEffect(() => {
-    fetch(`${URL}/rooms`)
-      .then((res) => res.json())
-      .then((data) => {
-        setRooms(data.slice(0, 3));
-        // console.log(data);
-        if (data[0]?.images[0]) setDisplayedRoom(data[0].images[0]);
-      });
+
+    async function fetchData() {
+
+      try{
+        const response = await fetch(`${URL}/rooms`)
+        if(response) setRooms(response.json().slice(0,3))
+      }catch{
+        console.log('error')
+      }
+    }
+
+    fetchData()
+    
+    // fetch(`${URL}/rooms`)
+    //   .then((res) => res.json())
+    //   .then((data) => {
+    //     setRooms(data.slice(0, 3));
+    //     // console.log(data);
+    //     if (data[0]?.images[0]) setDisplayedRoom(data[0].images[0]);
+    //   });
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
@@ -80,7 +93,7 @@ const MainContent = ({ setActiveSection }) => {
       observer.disconnect();
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [setActiveSection]);
 
   const displayedRoomHandler = (room) => {
     setDisplayedRoom(`${room.images[0]}`);
