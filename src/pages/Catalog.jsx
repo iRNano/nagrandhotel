@@ -1,13 +1,14 @@
 import React, { useState, useEffect, useContext } from "react";
 import styled from "styled-components";
-import Heading from "../components/shared/Heading";
+// import StyledHeading from "../components/shared/StyledHeading";
 import { Link } from "react-router-dom";
-import Button from "../components/shared/Button";
+// import StyledButton from "../components/shared/StyledButton";
 import { URL } from "../config";
 import axios from "axios";
 import RoomList from "../components/RoomList";
 import { AuthContext } from "../context/AuthContext";
 import { Container } from "../styles/Pages.styled";
+import { StyledButton, StyledHeading } from "../components/shared/styles";
 
 const RoomWrapper = styled.div`
   background-color: ${(props) => props.theme.cream};
@@ -49,20 +50,20 @@ const Catalog = () => {
         <div className="row px-0 w-100 m-0">
           <div className="col-12 px-0">
             <div className="px-5">
-              <Heading.H1 location="rooms">Rooms</Heading.H1>
-              <Heading.H1 location="rooms">Stay with us</Heading.H1>
-              <Heading.H4 location="rooms">
+              <StyledHeading.H1 location="rooms">Rooms</StyledHeading.H1>
+              <StyledHeading.H1 location="rooms">Stay with us</StyledHeading.H1>
+              <StyledHeading.H4 location="rooms">
                 A sanctuary set against Mactan's historic downtown
-              </Heading.H4>
+              </StyledHeading.H4>
             </div>
           </div>
         </div>
         {user && user.isAdmin ? (
           <div className="text-right pr-3">
             <Link to="/add-room">
-              <Button size="large" location="admin">
+              <StyledButton size="large" location="admin">
                 Add a room
-              </Button>
+              </StyledButton>
             </Link>
           </div>
         ) : null}

@@ -2,16 +2,19 @@
         {
         "_id": "123abc",
         "name": "room name",
-        "description": "description"
+        "description": "description",
+        "images": []
         },
         {
         "_id": "zvc",
         "name": "room name",
-        "description": "description"
+        "description": "description",
+        "images": []
     },
         {
         "_id": "cbx",
         "name": "room name",
-        "description": "description"
+        "description": "description",
+        "images": []
     }
 ]

@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useState } from "react";
-import Heading from "../shared/Heading";
-import Button from "../shared/Button";
+// import StyledHeading from "../shared/StyledHeading";
+// import StyledButton from "../shared/StyledButton";
+import { StyledButton, StyledHeading } from "../shared/styles";
 
 const Capacity = ({ capacity, setCapacity }) => {
   // const [capacity, setCapacity] = useState({ adult: "", child: "" });
@@ -15,7 +16,7 @@ const Capacity = ({ capacity, setCapacity }) => {
     <Fragment>
       <div className="row">
         <div className="col-12">
-          <Heading.H1>Guest & Rooms</Heading.H1>
+          <StyledHeading.H1>Guest & Rooms</StyledHeading.H1>
         </div>
         <div className="col-6">
           <select
@@ -66,7 +67,7 @@ const Capacity = ({ capacity, setCapacity }) => {
           </select>
         </div>
       </div>
-      <Button onClick={() => console.log(capacity)}>UPDATE</Button>
+      <StyledButton onClick={() => console.log(capacity)}>UPDATE</StyledButton>
     </Fragment>
   );
 };

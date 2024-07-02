@@ -1,9 +1,8 @@
 import React, { useState, useContext } from "react"
 import Swal from 'sweetalert2'
-import Heading from '../shared/Heading'
-import Button from '../shared/Button'
 import {URL} from '../../config'
 import { AuthContext } from "../../context/AuthContext"
+import { StyledButton, StyledHeading } from "../shared/styles"
 
 const Login = () => {
     const [formData,setFormData] = useState({
@@ -64,7 +63,7 @@ const Login = () => {
     
     return(
         <form className="mx-auto col-sm-12 p-3" onSubmit={onSubmitHandler}>
-            <Heading.H1 location="profile" className="text-center">Login</Heading.H1>
+            <StyledHeading.H1 location="profile" className="text-center">Login</StyledHeading.H1>
             <div className="form-group">
                 <label htmlFor="email">Email</label>
                 <input type="email" className="form-control" name="email" onChange={onChangeHandler}/>
@@ -73,7 +72,7 @@ const Login = () => {
                 <label htmlFor="password">Password</label>
                 <input type="password" className="form-control" name="password" onChange={onChangeHandler}/>
             </div>
-            <Button className="w-100" location="profile">Login</Button>
+            <StyledButton className="w-100" location="profile">Login</StyledButton>
         </form>
     )
 }

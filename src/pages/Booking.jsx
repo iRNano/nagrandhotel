@@ -2,7 +2,6 @@ import React, { useState, Fragment, useEffect } from "react";
 import "react-dates/initialize";
 import momentPropTypes from "react-moment-proptypes";
 import moment from "moment";
-import Button from "../components/shared/Button";
 import styled from "styled-components";
 import { Container } from "../styles/Pages.styled";
 import {
@@ -11,7 +10,6 @@ import {
   DayPickerRangeController,
 } from "react-dates";
 import "react-dates/lib/css/_datepicker.css";
-import Heading from "../components/shared/Heading";
 import BookingNavbar from "../components/layouts/BookingNavbar";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Capacity from "../components/forms/Capacity";
@@ -22,6 +20,7 @@ import { URL } from "../config";
 import * as S from "./style";
 import * as T from "../config/theme";
 import BookingTabWdiget from "../components/layouts/BookingTabWidget";
+import { StyledButton, StyledHeading } from "../components/shared/styles";
 
 const CatalogContainer = styled.div`
   width: 80%;
@@ -152,11 +151,11 @@ const Booking = ({ user, token }) => {
               src={`${URL}${room.images[0].path}`}
             />
             <div className="card-body">
-              <Heading.H3 location="booking">{room.name}</Heading.H3>
-              <Heading.H4 location="booking">
+              <StyledHeading.H3 location="booking">{room.name}</StyledHeading.H3>
+              <StyledHeading.H4 location="booking">
                 Available rooms: {room.quantity}
-              </Heading.H4>
-              <Heading.H4 location="booking">P {room.price}</Heading.H4>
+              </StyledHeading.H4>
+              <StyledHeading.H4 location="booking">P {room.price}</StyledHeading.H4>
 
               <InteractionDiv>
                 <input
@@ -166,7 +165,7 @@ const Booking = ({ user, token }) => {
                   min="1"
                   max={room.quantity}
                 />
-                <Button
+                <StyledButton
                   size="large"
                   style={{ width: "80%" }}
                   location="booking"
@@ -180,7 +179,7 @@ const Booking = ({ user, token }) => {
                   }}
                 >
                   Book
-                </Button>
+                </StyledButton>
               </InteractionDiv>
             </div>
           </div>
@@ -197,9 +196,9 @@ const Booking = ({ user, token }) => {
         color={T.pine}
         fontSize={"2rem"}
       >
-        <Heading.H1 location="checkout" className="text-center py-3">
+        <StyledHeading.H1 location="checkout" className="text-center py-3">
           Booking
-        </Heading.H1>
+        </StyledHeading.H1>
         <hr />
         <Fragment>
           <BookingNavbar setActiveTab={setActiveTab} />
@@ -232,7 +231,7 @@ const Booking = ({ user, token }) => {
          />
        </div>
        <div className="col-lg-4 col-12">
-         <Button
+         <StyledButton
            location="booking"
            size="large"
            onClick={() => {
@@ -241,22 +240,22 @@ const Booking = ({ user, token }) => {
            }}
          >
            Check Available Rooms
-         </Button>
+         </StyledButton>
        </div> */}
           {/* </div> */}
 
           {/* {booking && availableRooms.length > 0 ? (
        <CatalogContainer>
-         <Heading.H1 location="checkout" className="text-center">
+         <StyledHeading.H1 location="checkout" className="text-center">
            Accommodations
-         </Heading.H1>
+         </StyledHeading.H1>
          <hr />
          <div className="row">{showAvailableRooms}</div>
          <div className="text-right " style={{ size: "5rem" }}>
            <Link to="/checkout">
-             <Button location="booking" size="large">
+             <StyledButton location="booking" size="large">
                Checkout
-             </Button>
+             </StyledButton>
            </Link>
          </div>
        </CatalogContainer>

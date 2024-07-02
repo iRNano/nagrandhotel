@@ -6,7 +6,7 @@ import { Container, Content } from "../styles/Pages.styled";
 const AboutUs = () => {
   return (
     <Container bgColor={T.cream}>
-      <Content fontFamily={T.montserratLight} color={T.pine} fontSize={"2rem"}>
+      <Content fontFamily={T.montserratLight} fontSize={"2rem"}>
         <div>
           <div>
             <h1 style={{ fontSize: "4rem" }}>Hello!</h1>

@@ -8,7 +8,7 @@ export default defineConfig({
   esbuild: {
     include: /\.[jt]sx?$/,
     exclude: [],
-    loader: 'jsx',
+    loader: 'tsx',
   },
   plugins: [react({
     jsxRuntime: 'classic' // Add this line

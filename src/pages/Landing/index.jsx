@@ -4,13 +4,14 @@ import { Container, Content } from "../../styles/Pages.styled";
 import * as S from "./style";
 //shared styled components
 import landingPageImage from "../../images/home2189.png";
-import Button from "../../components/shared/Button";
+// import Button from "../../components/shared/Button";
 import beach from "../../images/beach1919.png";
-import Heading from "../../components/shared/Heading";
+// import Heading from "../../components/shared/Heading";
 import palmTree from "../../images/palmtree.png";
 import { URL } from "../../config";
 import { useInView, InView } from "react-intersection-observer";
 import { FlexDiv } from "../../styles/Flex.styled";
+import { StyledHeading, StyledButton,  StyledWrapper} from "../../components/shared/styles";
 
 const MainContent = ({ setActiveSection }) => {
   const [rooms, setRooms] = useState([]);
@@ -110,9 +111,9 @@ const MainContent = ({ setActiveSection }) => {
                 <S.LandingHeading>Yourself</S.LandingHeading>
                 <S.LandingHeading>Here</S.LandingHeading>
                 <Link to="/booking">
-                  <Button location="landing" size="large" type="button">
+                  <StyledButton location="landing" size="large">
                     BOOK NOW
-                  </Button>
+                  </StyledButton>
                 </Link>
               </S.FloatingText>
             </S.LandingPageContent>
@@ -145,9 +146,9 @@ const MainContent = ({ setActiveSection }) => {
                   to life in the heart of Cebu.
                 </p>
                 <Link to="/about-us">
-                  <Button location="aboutus" size="large" type="button">
+                  <StyledButton location="aboutus" size="large" type="button">
                     READ MORE
-                  </Button>
+                  </StyledButton>
                 </Link>
               </S.AboutUsDetails>
 
@@ -170,10 +171,10 @@ const MainContent = ({ setActiveSection }) => {
                     ))}
                   </ul>
                   <Link to="/catalog">
-                    <Button location="aboutus" size="large" type="button">
+                    <StyledButton location="aboutus" size="large" type="button">
                       {" "}
                       VIEW ALL SUITES
-                    </Button>
+                    </StyledButton>
                   </Link>
                 </S.AboutUsRooms>
               </FlexDiv>
@@ -187,9 +188,9 @@ const MainContent = ({ setActiveSection }) => {
             </div>
             <div>
               <div>
-                <Heading.H1 location="profile">
+                <StyledHeading.H1 location="profile">
                   Sign up for Special offers and promotions
-                </Heading.H1>
+                </StyledHeading.H1>
               </div>
             </div>
           </div>

@@ -1,6 +1,9 @@
-import styled from "styled-components";
+import styled from 'styled-components'
+import { rem } from "polished";
+import Button from './Button'
+import Header from './Heading';
 
-const Button = styled.button`
+export const StyledButton = styled(Button)`
   --bgColor: Transparent;
   appearance: none;
   background-color: var(--bgColor);
@@ -50,4 +53,54 @@ const Button = styled.button`
   }}
 `;
 
-export default Button;
+
+const Heading = styled(Header)`
+  ${(props) => {
+    switch (props.location) {
+      case "rooms":
+        return `color: ${props.theme.pine};`;
+      case "booking":
+        return `color: ${props.theme.pine};`;
+      case "checkout":
+        return `color: ${props.theme.pine};`;
+      case "profile":
+        return `color: ${props.theme.pine};`;
+      case "admin":
+        return `color: ${props.theme.pine};`;
+    }
+    return "color:white;";
+  }}
+  line-height: 1.2;
+
+  @media all and (max-width: 767px) {
+    font-size: ${rem(19)};
+  }
+`
+
+const H1 = styled(Heading)`
+    font-size: ${rem(33)};
+`;
+
+const H2 = styled(Heading)`
+  font-size: ${rem(28)};
+`;
+
+const H3 = styled(Heading)`
+  font-size: ${rem(23)};
+`;
+
+const H4 = styled(Heading)`
+  font-size: ${rem(19)};
+`;
+
+export const StyledHeading = {
+  H1,
+  H2,
+  H3,
+  H4,
+};
+
+export const StyledWrapper = styled.div`
+display: flex;    
+min-height: 100vh;
+`;
