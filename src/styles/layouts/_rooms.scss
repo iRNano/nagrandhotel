@@ -1,0 +1,11 @@
+.rooms {
+  background-color: var(--clr-cream);
+  padding: 8em;
+  min-height: 100vh;
+  // font-family: ${(props) => props.theme.zcoolXiaoWei};
+
+  //xs
+  @media all and (max-width: 767px) {
+    padding: 0em;
+  }
+}

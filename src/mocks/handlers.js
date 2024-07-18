@@ -5,5 +5,8 @@ export const handlers = [
     http.get(`${URL}/rooms`, () => {
 
         return HttpResponse.json(roomsResponse)
+    }),
+    http.get(`${URL}/rooms/:id`, ({params}) => {
+        return HttpResponse.json(roomsResponse.find(room => room._id === params.id));
     })
 ]

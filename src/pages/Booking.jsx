@@ -3,7 +3,6 @@ import "react-dates/initialize";
 import momentPropTypes from "react-moment-proptypes";
 import moment from "moment";
 import styled from "styled-components";
-import { Container } from "../styles/Pages.styled";
 import {
   DateRangePicker,
   SingleDatePicker,
@@ -151,11 +150,15 @@ const Booking = ({ user, token }) => {
               src={`${URL}${room.images[0].path}`}
             />
             <div className="card-body">
-              <StyledHeading.H3 location="booking">{room.name}</StyledHeading.H3>
+              <StyledHeading.H3 location="booking">
+                {room.name}
+              </StyledHeading.H3>
               <StyledHeading.H4 location="booking">
                 Available rooms: {room.quantity}
               </StyledHeading.H4>
-              <StyledHeading.H4 location="booking">P {room.price}</StyledHeading.H4>
+              <StyledHeading.H4 location="booking">
+                P {room.price}
+              </StyledHeading.H4>
 
               <InteractionDiv>
                 <input
@@ -189,7 +192,7 @@ const Booking = ({ user, token }) => {
   });
 
   return (
-    <Container bgColor={T.pine}>
+    <div className="container bg-pine">
       <S.Content
         fontFamily={T.montserratLight}
         bgColor={T.cream}
@@ -262,7 +265,7 @@ const Booking = ({ user, token }) => {
      ) : null} */}
         </Fragment>
       </S.Content>
-    </Container>
+    </div>
   );
 };
 export default Booking;

@@ -1,6 +1,8 @@
 import React, { useState, Fragment, useContext } from "react";
 import { useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import nagrandCream from "../../assets/images/Nagrandcream.png";
+import nagrandPine from "../../assets/images/Nagrandpine.png";
 import {
   BrandImg,
   NavUnlisted,
@@ -70,22 +72,21 @@ const TopNav = ({ logout, activeSection }) => {
         { path: "/catalog", name: "ROOMS" },
         { path: "/about-us", name: "ABOUT US" },
         { path: "/contact", name: "CONTACT" },
-        { path: "/profile", name: "LOGIN" },
       ]);
     }
   }, [user]);
 
   return (
-    <StyledNav showBackground={showBackground}>
+    <nav className="primary-nav">
       <NavLink to="/" exact>
-        <BrandImg></BrandImg>
+        <img src={nagrandCream}></img>
       </NavLink>
-      <Hamburger onClick={() => setCollapsed(!collapsed)}>
+      <div className="nav-burger">
         <span></span>
         <span></span>
         <span></span>
-      </Hamburger>
-      <NavUnlisted collapsed={collapsed} color={color}>
+      </div>
+      <ul>
         {menulinks.length &&
           menulinks.map((link, index) => (
             <NavLink
@@ -99,8 +100,8 @@ const TopNav = ({ logout, activeSection }) => {
               </li>
             </NavLink>
           ))}
-      </NavUnlisted>
-    </StyledNav>
+      </ul>
+    </nav>
   );
 };
 export default TopNav;

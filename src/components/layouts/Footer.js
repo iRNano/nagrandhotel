@@ -1,18 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { FlexDiv } from "../../styles/Flex.styled";
-import { Content } from "../../styles/Pages.styled";
-import { BrandImg, FooterLinks, FooterStyle } from "../../styles/Footer.styled";
+import nagrandBrand from "../../assets/images/Nagrandcream.png";
 
 const Footer = () => {
   return (
-    <FooterStyle>
-      <Content>
-        <FlexDiv>
-          <div>
-            <div style={{ display: "flex", justifyContent: "center" }}>
-              <BrandImg></BrandImg>
-            </div>
+    <footer className="bg-pine">
+      <div className="container">
+        <div className="primary-footer">
+          <div className="brand">
+            <img src={nagrandBrand}></img>
           </div>
           <div>
             <p>The Nagrand Resort & Spa</p>
@@ -21,37 +17,31 @@ const Footer = () => {
           </div>
           <div>
             <Link as={Link} to="/about-us">
-              <FooterLinks>About Us</FooterLinks>
+              <p>About Us</p>
             </Link>
 
             <Link to="/contact">
-              <FooterLinks>Contact Us</FooterLinks>
+              <p>Contact Us</p>
             </Link>
 
             <Link to="/catalog">
-              <FooterLinks>Rooms</FooterLinks>
+              <p>Rooms</p>
             </Link>
           </div>
           <div>
+            {" "}
             <p>Reservations</p>
             <p>T. +6332 402 1435</p>
             <p>M. +6332 413 7876</p>
             <p>F. +6332 441 5421</p>
           </div>
-        </FlexDiv>
-
-        <FlexDiv>
-          <div>
-            <small>
-              Copyright 2020 All rights reserved | Adrian Valdepenas
-            </small>
-          </div>
-          <div>
-            <small>www.avaldepenas.com</small>
-          </div>
-        </FlexDiv>
-      </Content>
-    </FooterStyle>
+        </div>
+        <div className="credits">
+          <small>Copyright 2020 All rights reserved | Adrian Valdepenas</small>
+          <small>www.avaldepenas.com</small>
+        </div>
+      </div>
+    </footer>
   );
 };
 

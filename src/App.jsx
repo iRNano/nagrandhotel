@@ -3,13 +3,11 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 //layout
 import Navbar from "./components/layouts/Navbar";
-import Navbar2 from "./components/layouts/Navbar2";
 import Footer from "./components/layouts/Footer";
 
 // import EditRoom from './components/forms/EditRoom'
 import "./App.css";
 import { ThemeProvider } from "styled-components";
-import { GlobalStyles } from "./styles/Global";
 import * as theme from "./config/theme";
 import ScrollToTop from "./ScrollToTop";
 import { AuthContextProvider } from "./context/AuthContext";
@@ -48,7 +46,7 @@ const App = () => {
     <div className="App">
       <AuthContextProvider>
         <ThemeProvider theme={theme}>
-          <GlobalStyles />
+          {/* <GlobalStyles /> */}
           <Router>
             <ScrollToTop />
             <Navbar

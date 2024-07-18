@@ -39,7 +39,7 @@ const Booking2 = () => {
   };
 
   return (
-    <Container>
+    <div className="container bg-pine">
       <TabsContainer>
         <TabButton onClick={() => handleTabClick(0)}>Step 1</TabButton>
         <TabButton onClick={() => handleTabClick(1)}>Step 2</TabButton>
@@ -47,7 +47,7 @@ const Booking2 = () => {
         <TabButton onClick={() => handleTabClick(3)}>Step 4</TabButton>
       </TabsContainer>
       {renderStepContent()}
-    </Container>
+    </div>
   );
 };
 

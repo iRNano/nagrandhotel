@@ -1,20 +1,26 @@
 [
         {
         "_id": "123abc",
-        "name": "room name",
+        "name": "Agua Suite",
         "description": "description",
-        "images": []
+        "images": ["../../assets/images/rooms/agua/main.jpg", "../../assets/images/rooms/agua/1.jpg", "../../assets/images/rooms/agua/2.jpg", "../../assets/images/rooms/agua/3.jpg", "../../assets/images/rooms/agua/4.jpg", "../../assets/images/rooms/agua/5.jpg", "../../assets/images/rooms/agua/6.jpg"]
         },
         {
         "_id": "zvc",
-        "name": "room name",
+        "name": "Arena Suite",
         "description": "description",
-        "images": []
+        "images": ["../../assets/images/rooms/arena/main.jpg", "../../assets/images/rooms/arena/1.jpg", "../../assets/images/rooms/arena/2.jpg", "../../assets/images/rooms/arena/3.jpg", "../../assets/images/rooms/arena/4.jpg", "../../assets/images/rooms/arena/5.jpg", "../../assets/images/rooms/arena/6.jpg"]
     },
         {
         "_id": "cbx",
-        "name": "room name",
+        "name": "Jungle Suite",
         "description": "description",
-        "images": []
+        "images": ["../../assets/images/rooms/jungle/main.jpg", "../../assets/images/rooms/jungle/1.jpg", "../../assets/images/rooms/jungle/2.jpg", "../../assets/images/rooms/jungle/3.jpg", "../../assets/images/rooms/jungle/4.jpg", "../../assets/images/rooms/jungle/5.jpg"]
+    },
+        {
+        "_id": "cbxe",
+        "name": "Tiera Suite",
+        "description": "description",
+        "images": ["../../assets/images/rooms/tiera/main.jpg", "../../assets/images/rooms/tiera/1.jpg", "../../assets/images/rooms/tiera/2.jpg", "../../assets/images/rooms/tiera/3.jpg"]
     }
 ]

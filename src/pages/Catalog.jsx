@@ -7,7 +7,6 @@ import { URL } from "../config";
 import axios from "axios";
 import RoomList from "../components/RoomList";
 import { AuthContext } from "../context/AuthContext";
-import { Container } from "../styles/Pages.styled";
 import { StyledButton, StyledHeading } from "../components/shared/styles";
 
 const RoomWrapper = styled.div`
@@ -45,32 +44,32 @@ const Catalog = () => {
   }, []);
 
   return (
-    <RoomWrapper>
-      <RoomContent>
-        <div className="row px-0 w-100 m-0">
-          <div className="col-12 px-0">
-            <div className="px-5">
-              <StyledHeading.H1 location="rooms">Rooms</StyledHeading.H1>
-              <StyledHeading.H1 location="rooms">Stay with us</StyledHeading.H1>
-              <StyledHeading.H4 location="rooms">
-                A sanctuary set against Mactan's historic downtown
-              </StyledHeading.H4>
-            </div>
+    <div className="container">
+      {/* <RoomContent> */}
+      <div className="row px-0 w-100 m-0">
+        <div className="col-12 px-0">
+          <div className="px-5">
+            <StyledHeading.H1 location="rooms">Rooms</StyledHeading.H1>
+            <StyledHeading.H1 location="rooms">Stay with us</StyledHeading.H1>
+            <StyledHeading.H4 location="rooms">
+              A sanctuary set against Mactan's historic downtown
+            </StyledHeading.H4>
           </div>
         </div>
-        {user && user.isAdmin ? (
-          <div className="text-right pr-3">
-            <Link to="/add-room">
-              <StyledButton size="large" location="admin">
-                Add a room
-              </StyledButton>
-            </Link>
-          </div>
-        ) : null}
-        <RoomList rooms={rooms} />
-        {/* <div className="row px-0 w-100 py-5 m-0">{showRooms}</div> */}
-      </RoomContent>
-    </RoomWrapper>
+      </div>
+      {user && user.isAdmin ? (
+        <div className="text-right pr-3">
+          <Link to="/add-room">
+            <StyledButton size="large" location="admin">
+              Add a room
+            </StyledButton>
+          </Link>
+        </div>
+      ) : null}
+      <RoomList rooms={rooms} />
+      {/* <div className="row px-0 w-100 py-5 m-0">{showRooms}</div> */}
+      {/* </RoomContent> */}
+    </div>
   );
 };
 
