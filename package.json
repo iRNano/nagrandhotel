@@ -34,7 +34,7 @@
   },
   "scripts": {
     "preview": "vite preview",
-    "build:sass": "sass  --no-source-map src/sass:public/css",
+    "build:sass": "sass  --no-source-map src/styles:public/css",
     "build:vite": "tsc && vite build",
     "copy:html": "copyfiles -u 1 './src/*.html' public",
     "copy:assets": "copyfiles -u 1 './src/assets/**/*' public",
@@ -47,7 +47,6 @@
     "start": "npm-run-all copy --parallel watch vite",
     "build": "npm-run-all copy:html build:*",
     "postbuild": "postcss public/css/*.css -u autoprefixer cssnano -r --no-map"
-    
   },
   "eslintConfig": {
     "extends": "react-app"
