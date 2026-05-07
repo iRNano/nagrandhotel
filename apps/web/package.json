@@ -1,0 +1,80 @@
+{
+  "name": "nagrandhotel-web",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@babel/runtime": "^7.9.2",
+    "@testing-library/jest-dom": "^4.2.4",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
+    "@types/styled-components": "^5.1.34",
+    "axios": "^0.19.2",
+    "jwt-decode": "^2.2.0",
+    "moment": "^2.24.0",
+    "polished": "^3.5.2",
+    "react": "^16.13.1",
+    "react-datepicker": "^2.14.1",
+    "react-dates": "^21.8.0",
+    "react-dom": "^16.13.1",
+    "react-intersection-observer": "^9.4.1",
+    "react-is": "^16.13.1",
+    "react-router-dom": "^5.1.2",
+    "react-stripe-checkout": "^2.6.3",
+    "react-with-direction": "^1.3.1",
+    "sass": "^1.77.8",
+    "stripe": "^8.47.0",
+    "styled-components": "^5.1.0",
+    "sweetalert2": "^9.10.12",
+    "autoprefixer": "^10.4.2",
+    "copyfiles": "^2.4.1",
+    "cssnano": "^5.0.17",
+    "npm-run-all": "^4.1.5",
+    "onchange": "^7.1.0",
+    "postcss-cli": "^9.1.0"
+  },
+  "scripts": {
+    "preview": "vite preview",
+    "build:sass": "sass  --no-source-map src/styles:public/css",
+    "build:vite": "tsc && vite build",
+    "copy:html": "copyfiles -u 1 './src/*.html' public",
+    "copy:assets": "copyfiles -u 1 './src/assets/**/*' public",
+    "copy": "npm-run-all --parallel copy:*",
+    "watch:assets": "onchange './src/assets/**/*' -- npm run copy:assets",
+    "watch:html": "onchange 'src/*.html' -- npm run copy:html",
+    "watch:sass": "sass  --no-source-map --watch src/styles:public/css",
+    "watch": "npm-run-all --parallel watch:*",
+    "vite": "vite",
+    "start": "npm-run-all copy --parallel watch vite",
+    "build": "npm-run-all copy:html build:*",
+    "postbuild": "postcss public/css/*.css -u autoprefixer cssnano -r --no-map"
+  },
+  "eslintConfig": {
+    "extends": "react-app"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.9",
+    "@types/react-router-dom": "^5.3.3",
+    "@vitejs/plugin-react": "^4.3.1",
+    "msw": "^2.3.1",
+    "typescript": "^5.5.2",
+    "vite": "^5.3.2",
+    "vite-tsconfig-paths": "^4.3.2"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
+  }
+}

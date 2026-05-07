@@ -1,68 +1,73 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Nagrand Resort & Spa (monorepo)
 
-## Available Scripts
+Full-stack hotel booking demo: **React (Vite)** frontend and **Express + MongoDB** API.
 
-In the project directory, you can run:
+| Package | Path | Description |
+|--------|------|-------------|
+| Web | [`apps/web`](apps/web) | Vite + React UI, Stripe publishable key, calls API via `VITE_API_URL` |
+| API | [`apps/api`](apps/api) | Express REST API, JWT, Stripe server, MongoDB (Mongoose) |
 
-### `npm start`
+## Prerequisites
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+- Node.js 18+
+- MongoDB (local or Atlas), or use [`apps/api/docker-compose.yml`](apps/api/docker-compose.yml) if you run Mongo via Docker
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Quick start
 
-### `npm test`
+From the **repository root**:
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+```bash
+npm install
+```
 
-### `npm run build`
+### 1. API (`apps/api`)
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```bash
+cp apps/api/.env.example apps/api/.env
+# Edit apps/api/.env — set MONGODB_URI, JWT_SECRET, Stripe/email vars as needed
+npm run dev:api
+```
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+API listens on **port 4000** by default (`PORT`).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 2. Web (`apps/web`)
 
-### `npm run eject`
+```bash
+cp apps/web/.env.example apps/web/.env.development.local
+# Ensure VITE_API_URL matches your API (default http://localhost:4000)
+npm run dev:web
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Vite dev server uses **port 3000** (see `apps/web/vite.config.ts`).
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### CORS
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+Set `CORS_ORIGIN` in `apps/api/.env` to match the web origin. For local dev, use:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+`CORS_ORIGIN=http://localhost:3000`
 
-## Learn More
+Multiple origins: comma-separated list, e.g. `http://localhost:3000,https://your-app.vercel.app`.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Root scripts
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+| Script | Action |
+|--------|--------|
+| `npm run dev:web` | Start Vite dev (with asset copy/watch as defined in workspace) |
+| `npm run dev:api` | Start API with nodemon |
+| `npm run build:web` | Production build of the web app |
+| `npm run preview:web` | Preview production build |
+| `npm run start:api` | Run API (Node) |
+| `npm run test:api` | Syntax check `app.js` |
 
-### Code Splitting
+## Deployment
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+- **Web**: deploy `apps/web` as the site root (e.g. Vercel/Netlify **Root Directory** = `apps/web`). Set `VITE_API_URL` to your production API URL.
+- **API**: deploy `apps/api` as a Node service (e.g. Railway, Render, Fly). Set `PORT`, `MONGODB_URI`, secrets, and `CORS_ORIGIN` to your **production** frontend URL(s).
 
-### Analyzing the Bundle Size
+## Legacy standalone repos
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+The API previously lived in a separate repository. It is now **`apps/api`** here. If you still have the old remote, archive it and point contributors to this monorepo.
 
-### Making a Progressive Web App
+## License
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Private / portfolio unless you add a license file.

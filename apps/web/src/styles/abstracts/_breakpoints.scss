@@ -1,0 +1,56 @@
+// Breakpoint scale (align with Bootstrap-style: sm, md, lg, xl)
+$bp-sm: 576px;
+$bp-md: 768px;
+$bp-lg: 992px;
+$bp-xl: 1200px;
+
+$breakpoints: (
+  small: $bp-sm,
+  medium: $bp-md,
+  large: $bp-lg,
+  xlarge: $bp-xl,
+);
+
+// Min-width (mobile-first)
+@mixin sm {
+  @media (min-width: $bp-sm) {
+    @content;
+  }
+}
+@mixin md {
+  @media (min-width: $bp-md) {
+    @content;
+  }
+}
+@mixin lg {
+  @media (min-width: $bp-lg) {
+    @content;
+  }
+}
+@mixin xl {
+  @media (min-width: $bp-xl) {
+    @content;
+  }
+}
+
+// Max-width (for overriding desktop styles on smaller screens)
+@mixin max-sm {
+  @media (max-width: #{$bp-sm - 1px}) {
+    @content;
+  }
+}
+@mixin max-md {
+  @media (max-width: #{$bp-md - 1px}) {
+    @content;
+  }
+}
+@mixin max-lg {
+  @media (max-width: #{$bp-lg - 1px}) {
+    @content;
+  }
+}
+@mixin max-xl {
+  @media (max-width: #{$bp-xl - 1px}) {
+    @content;
+  }
+}
